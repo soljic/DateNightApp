@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Domain;
 using MediatR;
 using Persistence;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Activity
