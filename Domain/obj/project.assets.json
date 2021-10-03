@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\filip\\Reactivities\\Domain\\Domain.csproj",
+      "projectUniqueName": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "c:\\Users\\filip\\Reactivities\\Domain\\Domain.csproj",
+      "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj",
       "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\filip\\Reactivities\\Domain\\obj\\",
+      "outputPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -32,6 +32,7 @@
       },
       "frameworks": {
         "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
           "projectReferences": {}
         }
       },
@@ -43,6 +44,7 @@
     },
     "frameworks": {
       "netstandard2.1": {
+        "targetAlias": "netstandard2.1",
         "imports": [
           "net461",
           "net462",
@@ -58,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

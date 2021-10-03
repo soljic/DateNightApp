@@ -1264,11 +1264,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\filip\\Reactivities\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\filip\\Reactivities\\API\\API.csproj",
+      "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\API\\API.csproj",
       "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\filip\\Reactivities\\API\\obj\\",
+      "outputPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1283,9 +1283,10 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\filip\\Reactivities\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\filip\\Reactivities\\Application\\Application.csproj"
+            "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj"
             }
           }
         }
@@ -1298,6 +1299,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": {
             "target": "Package",
@@ -1322,7 +1324,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

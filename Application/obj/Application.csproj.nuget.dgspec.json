@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\filip\\Reactivities\\Application\\Application.csproj": {}
+    "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\filip\\Reactivities\\Application\\Application.csproj": {
+    "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\filip\\Reactivities\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\filip\\Reactivities\\Application\\Application.csproj",
+        "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\filip\\Reactivities\\Application\\obj\\",
+        "outputPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -26,12 +26,13 @@
         },
         "frameworks": {
           "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\filip\\Reactivities\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\filip\\Reactivities\\Domain\\Domain.csproj"
+              "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\filip\\Reactivities\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\filip\\Reactivities\\Persistence\\Persistence.csproj"
+              "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -44,6 +45,7 @@
       },
       "frameworks": {
         "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
           "dependencies": {
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -65,18 +67,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\filip\\Reactivities\\Domain\\Domain.csproj": {
+    "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\filip\\Reactivities\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\filip\\Reactivities\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\filip\\Reactivities\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -91,6 +93,7 @@
         },
         "frameworks": {
           "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
             "projectReferences": {}
           }
         },
@@ -102,6 +105,7 @@
       },
       "frameworks": {
         "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
           "imports": [
             "net461",
             "net462",
@@ -117,18 +121,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\filip\\Reactivities\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\filip\\Reactivities\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\filip\\Reactivities\\Persistence\\Persistence.csproj",
+        "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\Persistence.csproj",
         "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\filip\\Reactivities\\Persistence\\obj\\",
+        "outputPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -143,9 +147,10 @@
         },
         "frameworks": {
           "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\filip\\Reactivities\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\filip\\Reactivities\\Domain\\Domain.csproj"
+              "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj"
               }
             }
           }
@@ -158,6 +163,7 @@
       },
       "frameworks": {
         "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -187,7 +193,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
