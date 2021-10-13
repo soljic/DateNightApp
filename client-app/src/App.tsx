@@ -1,23 +1,22 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Header, Icon } from 'semantic-ui-react';
 import { List } from 'semantic-ui-react';
 import './App.css';
 import axios from 'axios';
 
 
-class App extends Component {
-  state = {
-    values: []
-  }
-  componentDidMount(){
-    axios.get('http://localhost:5000/api/values')
+function App() {
+const [activities,setActivities] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/activities')
     .then((response)=>{
-      this.setState({
-        values: response.data
-      })
+      console.log(response);
+      setActivities(
+       response.data
+      )
     })
-  }
- render () {
+  }, [])
+
   return (
     <div>
       <Header as='h2'>
@@ -25,8 +24,9 @@ class App extends Component {
         <Header.Content>Reactivities</Header.Content>
       </Header>  
       <List>
-      {this.state.values.map((value: any)=>(
-            <List.Item key={value.id}>{value.name}</List.Item>
+      {activities.map((value: any)=>(
+            <List.Item key={value.id}>{value.title}</List.Item>
+           
           ))}
       </List>
         <ul>
@@ -37,6 +37,6 @@ class App extends Component {
   );
 
  }
-}
+
 
 export default App;
