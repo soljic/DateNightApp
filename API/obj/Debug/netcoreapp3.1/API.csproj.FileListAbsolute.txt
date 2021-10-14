@@ -136,3 +136,5 @@ C:\Users\filip\Desktop\Reactivities2.0\API\obj\Debug\netcoreapp3.1\API.csproj.Co
 C:\Users\filip\Desktop\Reactivities2.0\API\obj\Debug\netcoreapp3.1\API.dll
 C:\Users\filip\Desktop\Reactivities2.0\API\obj\Debug\netcoreapp3.1\API.pdb
 C:\Users\filip\Desktop\Reactivities2.0\API\obj\Debug\netcoreapp3.1\API.genruntimeconfig.cache
+C:\Users\filip\Desktop\Reactivities2.0\API\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\filip\Desktop\Reactivities2.0\API\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

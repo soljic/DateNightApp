@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using AutoMapper;
+using Domain;
 
 namespace Application.Activity
 {
@@ -12,37 +14,31 @@ namespace Application.Activity
     {
                 public class Command : IRequest
                 {
-                         public Guid Id { get; set; }
-                        public string Title { get; set; }
-                        public string Descriptionle { get; set; }
-                        public string Category { get; set; }
-                        public DateTime? Date  { get; set; }
-                        public string City { get; set; }
-                        public string Venue { get; set; }
+                       public Activities Activities { get; set;}
                 }
                  public class Handler : IRequestHandler<Command>
                 {
                     private readonly DataContext _context;
-                    public Handler(DataContext context)
+                    
+                    private readonly IMapper _mapper;
+                    public Handler(DataContext context, IMapper mapper)
                     {
                         _context = context;
+                        _mapper = mapper;
                     }
-        
-                    public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+
+            public IMapper Mapper { get; }
+
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
                     {   
 
-                        var editing = await _context.Activities.FirstOrDefaultAsync(c => c.Id== request.Id);
+                        var editing = await _context.Activities.FirstOrDefaultAsync(c => c.Id== request.Activities.Id);
                         if(editing==null)
                         {
                             throw new Exception("Could not find activity");
                         }
-                        editing.Title = request.Title ?? editing.Title;
-                        editing.Descriptionle = request.Descriptionle ?? editing.Descriptionle;
-                        editing.Category = request.Category ?? editing.Category;
-                        editing.Date = request.Date ?? editing.Date;
-                        editing.City = request.City ?? editing.City;
-                        editing.Venue = request.Venue ?? editing.Venue;
-                        
+                      
+                        _mapper.Map(request.Activities,editing);
                         var succes = await _context.SaveChangesAsync() > 0;
         
                         if(succes) return Unit.Value;

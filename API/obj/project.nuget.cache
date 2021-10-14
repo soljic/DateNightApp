@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "rAjy5dR12yFqk3tcAaZbx9AvtM/ZOtsyDvXwK+r8WEAv34aeOk9qIMgY/kq9dJC3tML8rsyOVry5IiY7P62Y0w==",
+  "dgSpecHash": "lOexRo02xSeD3tW7T2AdSoq0WuQNtyopMbvnfVGZUm/fdYwdZ5ly6nk5KuUMAn20ORoKJc81rISv9gVsqVtBMw==",
   "success": true,
   "projectFilePath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\API\\API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\filip\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\filip\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\filip\\.nuget\\packages\\mediatr\\8.1.0\\mediatr.8.1.0.nupkg.sha512",
     "C:\\Users\\filip\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\8.1.0\\mediatr.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
     "C:\\Users\\filip\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
@@ -38,6 +40,7 @@
     "C:\\Users\\filip\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\filip\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
     "C:\\Users\\filip\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\filip\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\filip\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
   ],
   "logs": []
