@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import '../src/app/layout/index.css';
 import App from './app/layout/App';
 import * as serviceWorker from './serviceWorker';
+import {store, StoreContext} from './app/layout/stores/store'
 
 ReactDOM.render(
+  
   <React.StrictMode>
+    <StoreContext.Provider value={store}>  
     <App />
+    </StoreContext.Provider>
   </React.StrictMode>,
+  
   document.getElementById('root')
 );
 

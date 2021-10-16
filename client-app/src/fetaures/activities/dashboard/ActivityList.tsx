@@ -1,13 +1,18 @@
 
+import { observer } from 'mobx-react-lite';
 import React, { Fragment } from 'react';
 import {  Button, Header, Item, Label, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../app/layout/models/activity';
+import { useStore } from '../../../app/layout/stores/store';
 
 interface Props {
-    activities: Activity[]
+    deleteActivity: (id:string) => void;
 }
 
-function ActivityList({activities}: Props) {
+function ActivityList({ deleteActivity }: Props) {
+
+    const{activityStore} = useStore();
+    const{activities} = activityStore;
 
     return (
         <>
@@ -23,7 +28,8 @@ function ActivityList({activities}: Props) {
                             <div>{activity.city}, {activity.venue}</div>   
                         </Item.Description>
                         <Item.Extra>
-                            <Button floated="right" content="View" color="blue"/>
+                            <Button onClick={() => activityStore.selectActivity(activity.id)} floated="right" content="View" color="blue"/>
+                            <Button onClick={() => deleteActivity(activity.id)} floated="right" content="Delete" color="red"/>
                             <Label basic content={activity.category} />
                         </Item.Extra>
                     </Item.Content>
@@ -37,4 +43,4 @@ function ActivityList({activities}: Props) {
     )
 }
 
-export default ActivityList
+export default observer(ActivityList)

@@ -1,8 +1,15 @@
 import React from 'react';
 import './NavBar.css';
 import { Button, Container, Menu } from 'semantic-ui-react'
+import { useStore } from '../stores/store';
+import { observer } from 'mobx-react-lite';
+
+
 
 function NavBar() {
+ 
+    const{activityStore} = useStore();
+
     return (
         <div>
             <Menu 
@@ -15,7 +22,7 @@ function NavBar() {
                     </Menu.Item>
                     <Menu.Item name="Activities"/>
                     <Menu.Item >
-                      <Button positive content ="Aply for a quiz" />
+                      <Button onClick={() => activityStore.openForm()} positive content ="Aply for a quiz" />
                     </Menu.Item>
                 </Container>
 
@@ -24,4 +31,4 @@ function NavBar() {
     )
 }
 
-export default NavBar
+export default observer(NavBar)
