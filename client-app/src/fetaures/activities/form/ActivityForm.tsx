@@ -6,11 +6,10 @@ import { Activity } from '../../../app/layout/models/activity';
 import { useStore } from '../../../app/layout/stores/store';
 
 interface Props {
-  createOrEdit: (activity : Activity) => void;
   submitting: boolean;
 }
 
-function ActivityForm({ createOrEdit, submitting }:Props) {
+function ActivityForm({  submitting }:Props) {
 
   const{activityStore} = useStore();
     const{selectedActivity} = activityStore;
@@ -28,7 +27,7 @@ function ActivityForm({ createOrEdit, submitting }:Props) {
   const[activity,setActivity] = useState(initialState);
 
   function handleSubmit(){
-    createOrEdit(activity);
+    activity.id ? activityStore.updateActivity(activity) : activityStore.createActivity(activity)
   }
   
 function handleChange(event: any) {

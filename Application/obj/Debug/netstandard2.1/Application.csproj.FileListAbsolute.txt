@@ -23,6 +23,6 @@ C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Appl
 C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.AssemblyInfoInputs.cache
 C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.AssemblyInfo.cs
 C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.csproj.CoreCompileInputs.cache
-C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.csproj.CopyComplete
 C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.dll
 C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.pdb
+C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.GeneratedMSBuildEditorConfig.editorconfig

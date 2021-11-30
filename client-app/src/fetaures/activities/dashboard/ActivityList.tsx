@@ -5,20 +5,18 @@ import {  Button, Header, Item, Label, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../app/layout/models/activity';
 import { useStore } from '../../../app/layout/stores/store';
 
-interface Props {
-    deleteActivity: (id:string) => void;
-}
 
-function ActivityList({ deleteActivity }: Props) {
+
+function ActivityList() {
 
     const{activityStore} = useStore();
-    const{activities} = activityStore;
+    const{activitiesByDate} = activityStore;
 
     return (
         <>
        <Segment>
            <Item.Group divided>
-               {activities.map(activity =>(
+               {activitiesByDate.map(activity =>(
                    <Item key={activity.id}>
                     <Item.Content>
                         <Item.Header as="a">{activity.title}</Item.Header>
@@ -29,7 +27,7 @@ function ActivityList({ deleteActivity }: Props) {
                         </Item.Description>
                         <Item.Extra>
                             <Button onClick={() => activityStore.selectActivity(activity.id)} floated="right" content="View" color="blue"/>
-                            <Button onClick={() => deleteActivity(activity.id)} floated="right" content="Delete" color="red"/>
+                            <Button onClick={() => activityStore.deleteActivity(activity.id)} floated="right" content="Delete" color="red"/>
                             <Label basic content={activity.category} />
                         </Item.Extra>
                     </Item.Content>
