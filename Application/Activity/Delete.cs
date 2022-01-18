@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core;
 using MediatR;
 using Persistence;
 
@@ -8,13 +9,13 @@ namespace Application.Activity
 {
     public class Delete
     {
-           public class Command : IRequest
+           public class Command :  IRequest<Result<Unit>>
                 {
                     public Guid Id { get; set; }
                
                  }            
                 
-            public class Handler : IRequestHandler<Command>
+            public class Handler : IRequestHandler<Command, Result<Unit>>
                 {
                     private readonly DataContext _context;
                     public Handler(DataContext context)
@@ -22,21 +23,19 @@ namespace Application.Activity
                         _context = context;
                     }
         
-                    public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
-                    {
+                    public async Task<Result<Unit>>  Handle(Command request, CancellationToken cancellationToken)
+                    { 
                         var delete = await _context.Activities.FindAsync(request.Id);
-                         if(delete==null)
-                        {
-                            throw new Exception("Could not find activity");
-                        }
-
+                        //  if(delete == null) return null;
+                        if(delete == null) return null;
+                    
                           _context.Remove(delete);
                           //handler logic implementation
+
                         var succes = await _context.SaveChangesAsync() > 0;
         
-                        if(succes) return Unit.Value;
-                        throw new Exception("Problem saving changes");
-        
+                        if(succes) return Result<Unit>.Success(Unit.Value);
+                        return Result<Unit>.Failure("Failed to delete activity");
                     }
 
         }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HSO57CvaOOOyHiYKSIOGaBi8spSjW9yOXYrpNBCB6u1E5rWLnCSMZn65Lt5Nop07t1FP8fIkhWhskJ5iytkJGg==",
+  "dgSpecHash": "9yJ07hX49us1X8z/B8MgxYtcyj0o8WFfNj6yem+6NaQJthVlFGYFlptNxN1e8gUL+D0Ef+KQSHD5bqanZ26qnQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\filip\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -10,7 +10,7 @@ namespace API.Controllers
 {
     [Route("api/activities")]
     [ApiController]
-    public class ActivitiesContoller : ControllerBase
+    public class ActivitiesContoller : BaseApiController
     {
         private readonly IMediator _mediator;
         public ActivitiesContoller(IMediator mediator)
@@ -19,35 +19,35 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Activities>>> List()
+        public async Task<IActionResult> List()
         {
-            return await _mediator.Send(new List.Query());
+            return HandleResult(await _mediator.Send(new List.Query()));
         }
 
          [HttpGet("{id}")]
-        public async Task<ActionResult<Activities>> Details(Guid id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            return await _mediator.Send(new Details.Query{Id = id});
+            return HandleResult(await _mediator.Send(new Details.Query{Id = id}));
         }
 
         [HttpPost]
-        public async Task<ActionResult<Unit>> Create(Create.Command command)
+        public async Task<IActionResult> CreateActivity(Activities activitiy)
         {
-            return await _mediator.Send(command);
+            return HandleResult(await Mediator.Send(new Create.Command {Activity = activitiy }));
         }
 
          [HttpPut("{id}")]
-        public async Task<ActionResult<Unit>> Edit(Guid id, Edit.Command command)
+        public async Task<IActionResult> Edit(Guid id, Activities command)
         {
             command.Id = id;
-            return await _mediator.Send(command);
+            return HandleResult(await _mediator.Send(new Edit.Command{Activity = command }));
         }
 
          [HttpDelete("{id}")]
-        public async Task<ActionResult<Unit>> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
            
-            return await _mediator.Send(new Delete.Command{Id = id});
+            return HandleResult(await _mediator.Send(new Delete.Command{Id = id}));
         }
     }   
 }   

@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Middleware;
 using Application.Activity;
+using Application.Core;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +32,9 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation(config =>{
+                config.RegisterValidatorsFromAssemblyContaining<Create>();
+            });
              var connectionString = Configuration.GetConnectionString("DefaultConnecton");
             services.AddDbContext<DataContext>(opt =>{
                 opt.UseSqlite(connectionString);
@@ -41,15 +46,18 @@ namespace API
                 });
             });
             services.AddMediatR(typeof(List.Handler).Assembly);
+              services.AddAutoMapper(typeof(MappingProfiles).Assembly);
            // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionMiddleware>();
+
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                
             }
 
            // app.UseHttpsRedirection();

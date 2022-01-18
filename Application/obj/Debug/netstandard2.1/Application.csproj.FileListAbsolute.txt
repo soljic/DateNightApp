@@ -12,3 +12,17 @@ C:\Users\filip\Reactivities\Application\obj\Debug\netstandard2.1\Application.csp
 C:\Users\filip\Reactivities\Application\obj\Debug\netstandard2.1\Application.csproj.CopyComplete
 C:\Users\filip\Reactivities\Application\obj\Debug\netstandard2.1\Application.dll
 C:\Users\filip\Reactivities\Application\obj\Debug\netstandard2.1\Application.pdb
+C:\Users\filip\Desktop\Reactivities2.0\Application\bin\Debug\netstandard2.1\Application.deps.json
+C:\Users\filip\Desktop\Reactivities2.0\Application\bin\Debug\netstandard2.1\Application.dll
+C:\Users\filip\Desktop\Reactivities2.0\Application\bin\Debug\netstandard2.1\Application.pdb
+C:\Users\filip\Desktop\Reactivities2.0\Application\bin\Debug\netstandard2.1\Domain.dll
+C:\Users\filip\Desktop\Reactivities2.0\Application\bin\Debug\netstandard2.1\Persistence.dll
+C:\Users\filip\Desktop\Reactivities2.0\Application\bin\Debug\netstandard2.1\Domain.pdb
+C:\Users\filip\Desktop\Reactivities2.0\Application\bin\Debug\netstandard2.1\Persistence.pdb
+C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.csproj.AssemblyReference.cache
+C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.AssemblyInfoInputs.cache
+C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.AssemblyInfo.cs
+C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.csproj.CoreCompileInputs.cache
+C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.dll
+C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.pdb
+C:\Users\filip\Desktop\Reactivities2.0\Application\obj\Debug\netstandard2.1\Application.GeneratedMSBuildEditorConfig.editorconfig
