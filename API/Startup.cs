@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Middleware;
+using API.Services;
 using Application.Activity;
 using Application.Core;
+using Domain;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +20,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Infrastructure.Email;
 
 namespace API
 {
@@ -32,7 +41,13 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddFluentValidation(config =>{
+          services.AddControllers(opt => 
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                opt.Filters.Add(new AuthorizeFilter(policy));
+            })
+                .AddFluentValidation(config => 
+            {
                 config.RegisterValidatorsFromAssemblyContaining<Create>();
             });
              var connectionString = Configuration.GetConnectionString("DefaultConnecton");
@@ -47,6 +62,26 @@ namespace API
             });
             services.AddMediatR(typeof(List.Handler).Assembly);
               services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+              services.AddIdentityCore<AppUser>(opt => {
+                  opt.Password.RequireNonAlphanumeric = false;
+                  opt.SignIn.RequireConfirmedEmail = true;
+              })
+              .AddEntityFrameworkStores<DataContext>()
+              .AddSignInManager<SignInManager<AppUser>>()
+              .AddDefaultTokenProviders();
+              var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
+              services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+              .AddJwtBearer(opt =>{
+                  opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                  {
+                      ValidateIssuerSigningKey = true,
+                      IssuerSigningKey = key,
+                      ValidateIssuer = false,
+                      ValidateAudience = false
+                  };
+              });
+               services.AddScoped<TokenService>();
+                 services.AddScoped<EmailSender>();
            // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
@@ -67,7 +102,7 @@ namespace API
 
             app.UseCors("CorsPolicy");
 
-           
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

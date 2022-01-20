@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Application.Activity;
 using Domain;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
