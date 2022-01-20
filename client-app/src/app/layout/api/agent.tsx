@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { history } from "../../..";
 import { Activity } from "../models/activity";
 import { Photo, Profile, UserActivity } from "../models/profile";
+import { User, UserFormValues } from "../models/user";
 
 
 const sleep = (delay: number) =>{
@@ -64,6 +65,16 @@ const Activities = {
   delete: (id: string) => requests.del<void>(`/activities/${id}`),
 };
 
+const Account = {
+  current: () => requests.get<User>('/account'),
+  login: (user: UserFormValues) => requests.post<User>('/account/login', user),
+  register: (user: UserFormValues) => requests.post<User>('/account/register', user),
+  verifyEmail: (token: string, email: string) => 
+      requests.post<void>(`/account/verifyEmail?token=${token}&email=${email}`, {}),
+  resendEmailConfirm: (email: string) => 
+      requests.get(`/account/resendEmailConfirmationLink?email=${email}`)
+}
+
 const Profiles = {
   get: (username: string) => requests.get<Profile>(`/profiles/${username}`),
   uploadPhoto: (file: Blob) => {
@@ -86,7 +97,8 @@ const Profiles = {
 
 const agent = {
   Activities,
+  Account,
   Profiles
-};
+}
 
 export default agent;

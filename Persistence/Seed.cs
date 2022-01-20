@@ -1,16 +1,50 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace Persistence
 {
     public class Seed
     {
-        public static void SeedData(DataContext context)
+        public static async Task SeedData(DataContext context,
+            UserManager<AppUser> userManager)
         {
-            if(!context.Activities.Any())
+            if (!userManager.Users.Any())
             {
+                var users = new List<AppUser>
+                {
+                    new AppUser
+                    {
+                        DisplayName = "Bob",
+                        UserName = "bob",
+                        Email = "bob@test.com"
+                    },
+                    new AppUser
+                    {
+                        DisplayName = "Jane",
+                        UserName = "jane",
+                        Email = "jane@test.com"
+                    },
+                    new AppUser
+                    {
+                        DisplayName = "Tom",
+                        UserName = "tom",
+                        Email = "tom@test.com"
+                    },
+                };
+
+                foreach (var user in users)
+                {
+                    await userManager.CreateAsync(user, "Pa$$w0rd");
+                }
+            }
+
+
+            if(!context.Activities.Any()) return;
+            
                 var activities = new List<Activities>
                 {
                     new Activities
@@ -29,25 +63,28 @@ namespace Persistence
                         Descriptionle = "Activities 1 month ago",
                         Category = "culture",
                         City = "Paris",
-                        Venue = "Louvre",
+                        Venue = "The Louvre",
+                        
                     },
                     new Activities
                     {
                         Title = "Future Activities 1",
                         Date = DateTime.Now.AddMonths(1),
                         Descriptionle = "Activities 1 month in future",
-                        Category = "culture",
+                        Category = "music",
                         City = "London",
-                        Venue = "Natural History Museum",
+                        Venue = "Wembly Stadium",
+                        
                     },
                     new Activities
                     {
                         Title = "Future Activities 2",
                         Date = DateTime.Now.AddMonths(2),
                         Descriptionle = "Activities 2 months in future",
-                        Category = "music",
+                        Category = "food",
                         City = "London",
-                        Venue = "O2 Arena",
+                        Venue = "Jamies Italian",
+                        
                     },
                     new Activities
                     {
@@ -56,16 +93,18 @@ namespace Persistence
                         Descriptionle = "Activities 3 months in future",
                         Category = "drinks",
                         City = "London",
-                        Venue = "Another pub",
+                        Venue = "Pub",
+                        
                     },
                     new Activities
                     {
                         Title = "Future Activities 4",
                         Date = DateTime.Now.AddMonths(4),
                         Descriptionle = "Activities 4 months in future",
-                        Category = "drinks",
+                        Category = "culture",
                         City = "London",
-                        Venue = "Yet another pub",
+                        Venue = "British Museum",
+                       
                     },
                     new Activities
                     {
@@ -74,7 +113,8 @@ namespace Persistence
                         Descriptionle = "Activities 5 months in future",
                         Category = "drinks",
                         City = "London",
-                        Venue = "Just another pub",
+                        Venue = "Punch and Judy",
+                        
                     },
                     new Activities
                     {
@@ -83,32 +123,32 @@ namespace Persistence
                         Descriptionle = "Activities 6 months in future",
                         Category = "music",
                         City = "London",
-                        Venue = "Roundhouse Camden",
+                        Venue = "O2 Arena",
+                       
                     },
                     new Activities
                     {
                         Title = "Future Activities 7",
                         Date = DateTime.Now.AddMonths(7),
-                        Descriptionle = "Activities 2 months ago",
+                        Descriptionle = "Activities 7 months in future",
                         Category = "travel",
-                        City = "London",
-                        Venue = "Somewhere on the Thames",
+                        City = "Berlin",
+                        Venue = "All",
+                         
                     },
                     new Activities
                     {
                         Title = "Future Activities 8",
                         Date = DateTime.Now.AddMonths(8),
                         Descriptionle = "Activities 8 months in future",
-                        Category = "film",
+                        Category = "drinks",
                         City = "London",
-                        Venue = "Cinema",
+                        Venue = "Pub",
                     }
                 };
 
-                context.Activities.AddRange(activities);
-                context.SaveChanges();
-            };
-            
+                await context.Activities.AddRangeAsync(activities);
+                await context.SaveChangesAsync();
+            }
         }
     }
-}
