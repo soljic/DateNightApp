@@ -23,6 +23,7 @@ export default class UserStore {
         try {
             await agent.Account.register(creds);
             history.push(`/account/registerSuccess?email=${creds.email}`);
+            store.modalStore.closeModal();
         } catch (error) {
             throw error;
         }
@@ -47,21 +48,20 @@ export default class UserStore {
         history.push('/');
     }
 
-    // getUser = async () => {
-    //     try {
-    //         const user = await agent.Account.current();
-    //         store.commonStore.setToken(user.token);
-    //         runInAction(() => this.user = user);
-    //         this.startRefreshTokenTimer(user);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    getUser = async () => {
+        try {
+            const user = await agent.Account.current();
+            store.commonStore.setToken(user.token);
+            runInAction(() => this.user = user);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     // register = async (creds: UserFormValues) => {
     //     try {
     //         await agent.Account.register(creds);
-    //         history.push(`/account/registerSuccess?email=${creds.email}`);
+    //         // history.push(`/account/registerSuccess?email=${creds.email}`);
     //         store.modalStore.closeModal();
     //     } catch (error) {
     //         throw error;

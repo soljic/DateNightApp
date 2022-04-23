@@ -3,14 +3,19 @@ import { toast } from 'react-toastify';
 import { Button, Header, Icon, Segment } from 'semantic-ui-react';
 import agent from '../../app/layout/api/agent';
 import useQuery from '../../app/common/util/hooks';
+import { useHistory } from 'react-router-dom';
 
 import LoginForm from './LoginForm';
 import { useStore } from '../../app/layout/stores/store';
+import { Redirect } from 'react-router-dom';
 
 export default function ConfirmEmail() {
-    const {modalStore} = useStore();
+    const {modalStore,userStore} = useStore();
     const email = useQuery().get('email') as string;
     const token = useQuery().get('token') as string;
+    let history = useHistory();
+
+    const currentUser = userStore.user;
 
     const Status = {
         Verifying: 'Verifying',
@@ -23,6 +28,13 @@ export default function ConfirmEmail() {
     function handleConfirmEmailResend() {
         agent.Account.resendEmailConfirm(email).then(() => {
             toast.success('Verification email resent - please check your email');
+        }).catch(error => console.log(error));
+    }
+
+    function handleLoginAfterConfirmation() {
+        agent.Account.current().then(() => {
+            toast.success('Welcome to our page!');
+            history.push('/activities')
         }).catch(error => console.log(error));
     }
 
@@ -49,7 +61,7 @@ export default function ConfirmEmail() {
                 return (
                     <div>
                         <p>Email has been verified - you can now login</p>
-                        <Button primary onClick={() => modalStore.openModal(<LoginForm />)} size='huge' />
+                        <Button primary onClick={handleLoginAfterConfirmation} size='huge' content='Explore' />
                     </div>
                 );
         }

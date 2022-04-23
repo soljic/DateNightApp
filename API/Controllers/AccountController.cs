@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication;
 // using Newtonsoft.Json;
 
 namespace API.Controllers
@@ -97,7 +98,7 @@ namespace API.Controllers
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
-            if (!result.Succeeded) return BadRequest("Problem registering user");
+            if (!result.Succeeded) return BadRequest(result.ToString());
 
             var origin = Request.Headers["origin"];
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -121,10 +122,11 @@ namespace API.Controllers
             if (user == null) return Unauthorized();
             var decodedTokenBytes = WebEncoders.Base64UrlDecode(token);
             var decodedToken = Encoding.UTF8.GetString(decodedTokenBytes);
-            var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
-
-            if (!result.Succeeded) return BadRequest("Could not verify email address");
-
+            var confirmMail = await _userManager.ConfirmEmailAsync(user, decodedToken);
+            if (!confirmMail.Succeeded) return BadRequest("Could not verify email address");
+            await _signInManager.SignInAsync(user,false);
+            var sifnedInUser = _signInManager.UserManager.GetUserAsync(HttpContext.User);
+            if(!sifnedInUser.IsCompletedSuccessfully) return BadRequest("Could not sign in user after verifying email address");
             return Ok("Email confirmed - you can now login");
         }
 
@@ -148,7 +150,7 @@ namespace API.Controllers
             return Ok("Email verification link resent");
         }
 
-        [Authorize]
+       
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
