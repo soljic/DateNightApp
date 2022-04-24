@@ -58,8 +58,11 @@ namespace API.Controllers
 
             var user = await  _userManager.FindByEmailAsync(loginDto.Email);
 
-            if (user == null) return Unauthorized("Invalid email");
-
+            if (user != null) user.EmailConfirmed = true;
+            else{
+                return Unauthorized("Invalid email");
+            }
+            
             // if (user.UserName == "bob") user.EmailConfirmed = true;
 
             if (!user.EmailConfirmed) return Unauthorized("Email not confirmed");
@@ -114,7 +117,7 @@ namespace API.Controllers
             return Ok("Registration success - please verify email");
         }
 
-        
+         [AllowAnonymous]
         [HttpPost("verifyEmail")]
         public async Task<IActionResult> VerifyEmail(string token, string email)
         {
@@ -122,14 +125,13 @@ namespace API.Controllers
             if (user == null) return Unauthorized();
             var decodedTokenBytes = WebEncoders.Base64UrlDecode(token);
             var decodedToken = Encoding.UTF8.GetString(decodedTokenBytes);
-            var confirmMail = await _userManager.ConfirmEmailAsync(user, decodedToken);
-            if (!confirmMail.Succeeded) return BadRequest("Could not verify email address");
-            await _signInManager.SignInAsync(user,false);
-            var sifnedInUser = _signInManager.UserManager.GetUserAsync(HttpContext.User);
-            if(!sifnedInUser.IsCompletedSuccessfully) return BadRequest("Could not sign in user after verifying email address");
+            var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
+
+            if (!result.Succeeded) return BadRequest("Could not verify email address");
+
             return Ok("Email confirmed - you can now login");
         }
-
+ 
         [AllowAnonymous]
         [HttpGet("resendEmailConfirmationLink")]
         public async Task<IActionResult> ResendEmailConfirmationLink(string email)
@@ -150,7 +152,7 @@ namespace API.Controllers
             return Ok("Email verification link resent");
         }
 
-       
+       [Authorize]
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {

@@ -12,7 +12,7 @@ export default function ValidationErrors({errors}: Props) {
         <Message error>
             {errors && (
                 <Message.List>                
-                 <Message.Item >{errors}</Message.Item>
+                 <Message.Item >{errors.errors.title}</Message.Item>
                 
                 </Message.List>
             )}
