@@ -4,6 +4,7 @@ import { history } from "../../..";
 import { Activity } from "../models/activity";
 import { Photo, Profile, UserActivity } from "../models/profile";
 import { User, UserFormValues } from "../models/user";
+import { store } from "../stores/store";
 
 
 const sleep = (delay: number) =>{
@@ -13,6 +14,13 @@ const sleep = (delay: number) =>{
 }
 
 axios.defaults.baseURL = "http://localhost:5000/api";
+
+
+axios.interceptors.request.use(config => {
+  const token = store.commonStore.token;
+  if (token) config.headers.Authorization = `Bearer ${token}`
+  return config;
+})
 
 axios.interceptors.response.use(async response => {
  

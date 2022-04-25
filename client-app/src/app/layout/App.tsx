@@ -13,22 +13,32 @@ import ActivityDetails from '../../fetaures/activities/details/ActivityDetails';
 import TestErrors from '../../fetaures/errors/TestErrors';
 import { ToastContainer } from 'react-toastify';
 import NotFound from '../../fetaures/errors/NotFound';
+import LoginForm from '../../fetaures/users/LoginForm';
+import ModalContainer from '../common/modals/ModalContainer';
+import RegisterSuccess from '../../fetaures/users/RegisterSuccess';
+import ConfirmEmail from '../../fetaures/users/ConfirmEmail';
 
 function App() {
 
-const{activityStore} = useStore();
+const{activityStore,commonStore,userStore} = useStore();
 const location = useLocation();
 
   
 useEffect(() => {
     activityStore.loadActivities();
-  }, [activityStore]);
+    if(commonStore.token){
+      userStore.getUser().finally(() => commonStore.setAppLoaded())
+    }else{
+      commonStore.setAppLoaded();
+    }
+  }, [activityStore,commonStore,userStore]);
 
 
- if (activityStore.loadingInitial) return <LoadingComponents/>
+ if (!commonStore.appLoaded) return <LoadingComponents/>
   return (
     <>
     <ToastContainer position='bottom-right' hideProgressBar/>
+    <ModalContainer  />
 <Route exact path='/' component={HomePage} />
       <Route 
         path={'/(.+)'}
@@ -41,6 +51,9 @@ useEffect(() => {
           <Route path='/activities/:id' component={ActivityDetails} />
           <Route key={location.key} path={['/createActivity','/manage/:id']} component={ActivityForm} />
           <Route  path='/errors' component={TestErrors} />
+          <Route  path='/login' component={LoginForm} />
+          <Route  path='/account/registerSuccess' component={RegisterSuccess} />
+          <Route  path='/account/verifyEmail' component={ConfirmEmail} />
           <Route component={NotFound}/>
         </Switch>
       

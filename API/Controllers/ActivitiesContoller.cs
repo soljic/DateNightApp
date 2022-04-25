@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     [Route("api/activities")]
     [ApiController]
     public class ActivitiesContoller : BaseApiController

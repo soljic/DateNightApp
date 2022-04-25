@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication;
 // using Newtonsoft.Json;
 
 namespace API.Controllers
@@ -57,8 +58,11 @@ namespace API.Controllers
 
             var user = await  _userManager.FindByEmailAsync(loginDto.Email);
 
-            if (user == null) return Unauthorized("Invalid email");
-
+            if (user != null) user.EmailConfirmed = true;
+            else{
+                return Unauthorized("Invalid email");
+            }
+            
             // if (user.UserName == "bob") user.EmailConfirmed = true;
 
             if (!user.EmailConfirmed) return Unauthorized("Email not confirmed");
@@ -97,7 +101,7 @@ namespace API.Controllers
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
-            if (!result.Succeeded) return BadRequest("Problem registering user");
+            if (!result.Succeeded) return BadRequest(result.ToString());
 
             var origin = Request.Headers["origin"];
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -113,7 +117,7 @@ namespace API.Controllers
             return Ok("Registration success - please verify email");
         }
 
-        
+         [AllowAnonymous]
         [HttpPost("verifyEmail")]
         public async Task<IActionResult> VerifyEmail(string token, string email)
         {
@@ -127,7 +131,7 @@ namespace API.Controllers
 
             return Ok("Email confirmed - you can now login");
         }
-
+ 
         [AllowAnonymous]
         [HttpGet("resendEmailConfirmationLink")]
         public async Task<IActionResult> ResendEmailConfirmationLink(string email)
@@ -148,7 +152,7 @@ namespace API.Controllers
             return Ok("Email verification link resent");
         }
 
-        [Authorize]
+       [Authorize]
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
