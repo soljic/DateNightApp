@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\filip\\Desktop\\Reactivities2.0\\API\\API.csproj": {}
+    "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\filip\\Desktop\\Reactivities2.0\\API\\API.csproj": {
+    "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\API\\obj\\",
+        "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\Filip\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,11 +28,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj"
+              "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Application\\Application.csproj"
               },
-              "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -92,17 +92,17 @@
         }
       }
     },
-    "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj": {
+    "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\obj\\",
+        "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\Filip\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -116,11 +116,11 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj"
+              "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\Persistence.csproj"
+              "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -146,6 +146,10 @@
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[8.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[5.0.16, )"
             }
           },
           "imports": [
@@ -167,17 +171,17 @@
         }
       }
     },
-    "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj": {
+    "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Filip\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -237,17 +241,17 @@
         }
       }
     },
-    "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Filip\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -261,8 +265,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Application\\Application.csproj"
+              "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Application\\Application.csproj"
               }
             }
           }
@@ -305,17 +309,17 @@
         }
       }
     },
-    "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Persistence\\obj\\",
+        "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\Filip\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -329,8 +333,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\filip\\Desktop\\Reactivities2.0\\Domain\\Domain.csproj"
+              "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Domain\\Domain.csproj"
               }
             }
           }

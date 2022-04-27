@@ -26,6 +26,8 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Infrastructure.Email;
+using Application.Interfaces;
+using Infrastructure.Security;
 
 namespace API
 {
@@ -80,8 +82,17 @@ namespace API
                       ValidateAudience = false
                   };
               });
-               services.AddScoped<TokenService>();
-                 services.AddScoped<EmailSender>();
+                services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("IsActivityHost", policy =>
+                {
+                    policy.Requirements.Add(new IsHostRequirement());
+                });
+            });
+                services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
+                services.AddScoped<IUserAccessor, UserAccessor>();
+                services.AddScoped<TokenService>();
+                services.AddScoped<EmailSender>();
            // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
