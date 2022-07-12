@@ -17,6 +17,7 @@ import LoginForm from '../../fetaures/users/LoginForm';
 import ModalContainer from '../common/modals/ModalContainer';
 import RegisterSuccess from '../../fetaures/users/RegisterSuccess';
 import ConfirmEmail from '../../fetaures/users/ConfirmEmail';
+import ProfilePage from '../../fetaures/profiles/ProfilePage';
 
 function App() {
 
@@ -50,6 +51,7 @@ useEffect(() => {
           <Route exact path='/activities' component={ActivityDashboard} />
           <Route path='/activities/:id' component={ActivityDetails} />
           <Route key={location.key} path={['/createActivity','/manage/:id']} component={ActivityForm} />
+          <Route  path='/profiles/:username' component={ProfilePage} />  
           <Route  path='/errors' component={TestErrors} />
           <Route  path='/login' component={LoginForm} />
           <Route  path='/account/registerSuccess' component={RegisterSuccess} />

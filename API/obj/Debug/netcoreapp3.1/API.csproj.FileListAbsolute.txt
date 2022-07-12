@@ -184,3 +184,4 @@ C:\Users\Filip\Desktop\Reactivities\Reactivities-2.0\API\obj\Debug\netcoreapp3.1
 C:\Users\Filip\Desktop\Reactivities\Reactivities-2.0\API\obj\Debug\netcoreapp3.1\API.dll
 C:\Users\Filip\Desktop\Reactivities\Reactivities-2.0\API\obj\Debug\netcoreapp3.1\API.pdb
 C:\Users\Filip\Desktop\Reactivities\Reactivities-2.0\API\obj\Debug\netcoreapp3.1\API.genruntimeconfig.cache
+C:\Users\Filip\Desktop\Reactivities\Reactivities-2.0\API\obj\Debug\netcoreapp3.1\API.csproj.CopyComplete

@@ -15,7 +15,7 @@ namespace Application.Activity
     {
         public class Query : IRequest<Result<List<ActivityDto>>> { }
 
-        public class Handler : IRequestHandler<Query, Result<List<ActivityDto>>>
+        public class Handler : IRequestHandler<Query, Result<List<ActivityDto>>> 
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;

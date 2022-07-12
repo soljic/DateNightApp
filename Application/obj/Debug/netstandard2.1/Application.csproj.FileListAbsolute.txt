@@ -40,3 +40,4 @@ C:\Users\Filip\Desktop\Reactivities\Reactivities-2.0\Application\obj\Debug\netst
 C:\Users\Filip\Desktop\Reactivities\Reactivities-2.0\Application\obj\Debug\netstandard2.1\Application.csproj.CoreCompileInputs.cache
 C:\Users\Filip\Desktop\Reactivities\Reactivities-2.0\Application\obj\Debug\netstandard2.1\Application.dll
 C:\Users\Filip\Desktop\Reactivities\Reactivities-2.0\Application\obj\Debug\netstandard2.1\Application.pdb
+C:\Users\Filip\Desktop\Reactivities\Reactivities-2.0\Application\obj\Debug\netstandard2.1\Application.csproj.CopyComplete

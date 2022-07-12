@@ -28,6 +28,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Infrastructure.Email;
 using Application.Interfaces;
 using Infrastructure.Security;
+using Infrastructure.Photos;
 
 namespace API
 {
@@ -93,6 +94,8 @@ namespace API
                 services.AddScoped<IUserAccessor, UserAccessor>();
                 services.AddScoped<TokenService>();
                 services.AddScoped<EmailSender>();
+                services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+                services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
            // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
