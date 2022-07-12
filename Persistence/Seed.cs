@@ -12,7 +12,7 @@ namespace Persistence
         public static async Task SeedData(DataContext context,
             UserManager<AppUser> userManager)
         {
-            if (!userManager.Users.Any())
+            if (!userManager.Users.Any() && !context.Activities.Any())
             {
                 var users = new List<AppUser>
                 {
@@ -40,110 +40,218 @@ namespace Persistence
                 {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
-            }
 
-
-            if(!context.Activities.Any()) return;
-            
                 var activities = new List<Activities>
                 {
                     new Activities
                     {
-                        Title = "Past Activities 1",
+                        Title = "Past Activity 1",
                         Date = DateTime.Now.AddMonths(-2),
-                        Descriptionle = "Activities 2 months ago",
+                        Descriptionle = "Activity 2 months ago",
                         Category = "drinks",
                         City = "London",
                         Venue = "Pub",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            }
+                        }
                     },
                     new Activities
                     {
-                        Title = "Past Activities 2",
+                        Title = "Past Activity 2",
                         Date = DateTime.Now.AddMonths(-1),
-                        Descriptionle = "Activities 1 month ago",
+                        Descriptionle = "Activity 1 month ago",
                         Category = "culture",
                         City = "Paris",
                         Venue = "The Louvre",
-                        
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
                     },
                     new Activities
                     {
-                        Title = "Future Activities 1",
+                        Title = "Future Activity 1",
                         Date = DateTime.Now.AddMonths(1),
-                        Descriptionle = "Activities 1 month in future",
+                        Descriptionle = "Activity 1 month in future",
                         Category = "music",
                         City = "London",
                         Venue = "Wembly Stadium",
-                        
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = true
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false
+                            },
+                        }
                     },
                     new Activities
                     {
-                        Title = "Future Activities 2",
+                        Title = "Future Activity 2",
                         Date = DateTime.Now.AddMonths(2),
-                        Descriptionle = "Activities 2 months in future",
+                        Descriptionle = "Activity 2 months in future",
                         Category = "food",
                         City = "London",
                         Venue = "Jamies Italian",
-                        
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = false
+                            },
+                        }
                     },
                     new Activities
                     {
-                        Title = "Future Activities 3",
+                        Title = "Future Activity 3",
                         Date = DateTime.Now.AddMonths(3),
-                        Descriptionle = "Activities 3 months in future",
+                        Descriptionle = "Activity 3 months in future",
                         Category = "drinks",
                         City = "London",
                         Venue = "Pub",
-                        
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = true                            
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = false                            
+                            },
+                        }
                     },
                     new Activities
                     {
-                        Title = "Future Activities 4",
+                        Title = "Future Activity 4",
                         Date = DateTime.Now.AddMonths(4),
-                        Descriptionle = "Activities 4 months in future",
+                        Descriptionle = "Activity 4 months in future",
                         Category = "culture",
                         City = "London",
                         Venue = "British Museum",
-                       
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = true                            
+                            }
+                        }
                     },
                     new Activities
                     {
-                        Title = "Future Activities 5",
+                        Title = "Future Activity 5",
                         Date = DateTime.Now.AddMonths(5),
-                        Descriptionle = "Activities 5 months in future",
+                        Descriptionle = "Activity 5 months in future",
                         Category = "drinks",
                         City = "London",
                         Venue = "Punch and Judy",
-                        
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true                            
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false                            
+                            },
+                        }
                     },
                     new Activities
                     {
-                        Title = "Future Activities 6",
+                        Title = "Future Activity 6",
                         Date = DateTime.Now.AddMonths(6),
-                        Descriptionle = "Activities 6 months in future",
+                        Descriptionle = "Activity 6 months in future",
                         Category = "music",
                         City = "London",
                         Venue = "O2 Arena",
-                       
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = true                            
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false                            
+                            },
+                        }
                     },
                     new Activities
                     {
-                        Title = "Future Activities 7",
+                        Title = "Future Activity 7",
                         Date = DateTime.Now.AddMonths(7),
-                        Descriptionle = "Activities 7 months in future",
+                        Descriptionle = "Activity 7 months in future",
                         Category = "travel",
                         City = "Berlin",
                         Venue = "All",
-                         
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[0],
+                                IsHost = true                            
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = false                            
+                            },
+                        }
                     },
                     new Activities
                     {
-                        Title = "Future Activities 8",
+                        Title = "Future Activity 8",
                         Date = DateTime.Now.AddMonths(8),
-                        Descriptionle = "Activities 8 months in future",
+                        Descriptionle = "Activity 8 months in future",
                         Category = "drinks",
                         City = "London",
                         Venue = "Pub",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = true                            
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false                            
+                            },
+                        }
                     }
                 };
 
@@ -152,3 +260,4 @@ namespace Persistence
             }
         }
     }
+}

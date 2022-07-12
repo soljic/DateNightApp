@@ -12,7 +12,7 @@ import MyTextArea from "../../../app/common/form/MyTextArea";
 import MySelectInput from "../../../app/common/form/MySelectInput";
 import { categoryOptions } from '../../../app/common/options/categoryOptions';
 import MyDateInput from "../../../app/common/form/MyDateInput";
-import { Activity } from "../../../app/layout/models/activity";
+import { Activity, ActivityFormValues } from "../../../app/layout/models/activity";
 
 
 
@@ -21,15 +21,7 @@ function ActivityForm() {
   const { activityStore } = useStore();
   const {  loadActivity, loadingInitial, createActivity, updateActivity } = activityStore;
 
-  const [activity, setActivity] = useState<Activity>({
-    id: "",
-    title: "",
-    descriptionle: "",
-    category: "",
-    date: null,
-    city: "",
-    venue: "",
-  });
+  const [activity, setActivity] = useState<ActivityFormValues>( new ActivityFormValues());
 
   const validationSchema = object({
     title: string().required('The activity title is required'),
@@ -43,11 +35,11 @@ function ActivityForm() {
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    if (id) loadActivity(id).then((activity) => setActivity(activity!));
+    if (id) loadActivity(id).then((activity) => setActivity(new ActivityFormValues(activity)));
   }, [id, loadActivity]);
 
-  function handleFomSubmit(activity: Activity ) {
-    if(activity.id.length === 0){
+  function handleFomSubmit(activity: ActivityFormValues) {
+    if(!activity.id){
       let newActivity = {
         ...activity,
         id: uuid()
@@ -99,7 +91,7 @@ function ActivityForm() {
                    />
                    <Button
                    disabled={ isSubmitting || !dirty || !isValid }
-                     loading={loadingInitial}
+                     loading={isSubmitting}
                      floated="right"
                      positive
                      type="submit"

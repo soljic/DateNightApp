@@ -12,35 +12,35 @@ interface Props {
 
 export default function ActivityListItem({ activity }: Props) {  
 
+    console.log('activity:',activity.host);
     return (
         <Segment.Group>
             <Segment>
-                {/* {activity.isCancelled &&
+                {activity.isCancelled &&
                     <Label attached='top' color='red' content='Cancelled' style={{textAlign: 'center'}} />
-                } */}
+                }
                 <Item.Group>
                     <Item>
-                        <Item.Image style={{marginBottom: 3}} size='tiny' circular src={'/assets/user.png'} />
+                        <Item.Image style={{marginBottom: 3}} size='tiny' circular src={activity?.host?.image || '/assets/user.png'} />
                         <Item.Content>
                             <Item.Header as={Link} to={`/activities/${activity.id}`}>
                                 {activity.title}
-                            </Item.Header>
-                            <Item.Description>Hosted by Bob
+                            </Item.Header><Item.Description>Hosted by <Link to={`/profiles/${activity.hostUsername}`}>{activity.host?.displayName}</Link>
                             </Item.Description>
-                            {/* {activity.isHost && (
+                            {activity.isHost && (
                                 <Item.Description>
                                     <Label basic color='orange'>
                                         You are hosting this activity
                                     </Label>
                                 </Item.Description>
-                            )} */}
-                            {/* {activity.isGoing && !activity.isHost && (
+                            )}
+                            {activity.isGoing && !activity.isHost && (
                                 <Item.Description>
                                     <Label basic color='green'>
                                         You are going to this activity
                                     </Label>
                                 </Item.Description>
-                            )} */}
+                            )}
                         </Item.Content>
                     </Item>
                 </Item.Group>
@@ -52,8 +52,7 @@ export default function ActivityListItem({ activity }: Props) {
                 </span>
             </Segment>
             <Segment secondary>
-                {/* <ActivityListItemAttendee attendees={activity.attendees!} /> */}
-                Attendes go here!
+                <ActivityListItemAttendee attendees={activity.attendees!} />
             </Segment>
             <Segment clearing>
                 <span>{activity.descriptionle}</span>

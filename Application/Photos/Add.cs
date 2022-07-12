@@ -18,49 +18,43 @@ namespace Application.Photos
             public IFormFile File { get; set; }
         }
 
-        // public class Handler : IRequestHandler<Command, Result<Photo>>
-        // {
-        //     private readonly DataContext _context;
-        //     private readonly IPhotoAccessor _photoAccessor;
-        //     private readonly IUserAccessor _userAccessor;
-        //     public Handler(DataContext context, IPhotoAccessor photoAccessor, IUserAccessor userAccessor)
-        //     {
-        //         _userAccessor = userAccessor;
-        //         _photoAccessor = photoAccessor;
-        //         _context = context;
-        //     }
+        public class Handler : IRequestHandler<Command, Result<Photo>>
+        {
+            private readonly DataContext _context;
+            private readonly IPhotoAccessor _photoAccessor;
+            private readonly IUserAccessor _userAccessor;
+            public Handler(DataContext context, IPhotoAccessor photoAccessor, IUserAccessor userAccessor)
+            {
+                _userAccessor = userAccessor;
+                _photoAccessor = photoAccessor;
+                _context = context;
+            }
 
-        //     public Task<Result<Photo>> Handle(Command request, CancellationToken cancellationToken)
-        //     {
-        //         throw new System.NotImplementedException();
-        //     }
+            public async Task<Result<Photo>> Handle(Command request, CancellationToken cancellationToken)
+            {
+                var user = await _context.Users.Include(p => p.Phots)
+                    .FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetUsername());
 
+                if (user == null) return null;
 
-        //     // public async Task<Result<Photo>> Handle(Command request, CancellationToken cancellationToken)
-        //     // {
-        //     //     var user = await _context.Users.Include(p => p.Photos)
-        //     //         .FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetUsername());
+                var photoUploadResult = await _photoAccessor.AddPhoto(request.File);
 
-        //     //     if (user == null) return null;
+                var photo = new Photo
+                {
+                    Url = photoUploadResult.Url,
+                    Id = photoUploadResult.PublicId
+                };
 
-        //     //     var photoUploadResult = await _photoAccessor.AddPhoto(request.File);
+                if (!user.Phots.Any(x => x.IsMain)) photo.IsMain = true;
 
-        //     //     var photo = new Photo
-        //     //     {
-        //     //         Url = photoUploadResult.Url,
-        //     //         Id = photoUploadResult.PublicId
-        //     //     };
+                user.Phots.Add(photo);
 
-        //     //     if (!user.Photos.Any(x => x.IsMain)) photo.IsMain = true;
+                var result = await _context.SaveChangesAsync() > 0;
 
-        //     //     user.Photos.Add(photo);
+                if (result) return Result<Photo>.Success(photo);
 
-        //     //     var result = await _context.SaveChangesAsync() > 0;
-
-        //     //     if (result) return Result<Photo>.Success(photo);
-
-        //     //     return Result<Photo>.Failure("Problem adding photo");
-        //     // }
-        // }
+                return Result<Photo>.Failure("Problem adding photo");
+            }
+        }
     }
 }
