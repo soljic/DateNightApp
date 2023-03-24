@@ -20,7 +20,7 @@ namespace Application.Comments
             public Guid ActivityId { get; set; }
         }
 
-        public class CommandValidator : AbstractValidator  <Command>
+        public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Activity;
+using Application.Core;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -20,9 +21,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> List([FromQuery] ActivityParams param)
         {
-            return HandleResult(await _mediator.Send(new List.Query()));
+            return HandlePagedResult(await _mediator.Send(new List.Query { Params = param}));
         }
 
          [HttpGet("{id}")]

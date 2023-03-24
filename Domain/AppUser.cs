@@ -11,5 +11,9 @@ namespace Domain
 
         public ICollection<ActivityAttendee> Activities  { get; set; }     
         public ICollection<Photo> Phots  { get; set; }
+        public ICollection<UserFollowing> Followings { get; set; }
+        public ICollection<UserFollowing> Followers { get; set; }
+        public ICollection<Notification> Notifications { get; set; } = new List<Notification>();
+        public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
     }
 }

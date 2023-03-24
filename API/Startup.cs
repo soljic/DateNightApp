@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Middleware;
 using API.Services;
+using API.SignalR;
 using Application.Activity;
 using Application.Core;
 using Domain;
@@ -60,7 +61,7 @@ namespace API
             services.AddCors(opt => {
                 opt.AddPolicy("CorsPolicy", policy  =>
                 {
-                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                    policy.AllowAnyHeader().AllowCredentials().WithExposedHeaders("www-authenticate", "Pagination").AllowAnyMethod().WithOrigins("http://localhost:3000");
                 });
             });
             services.AddMediatR(typeof(List.Handler).Assembly);
@@ -80,8 +81,24 @@ namespace API
                       ValidateIssuerSigningKey = true,
                       IssuerSigningKey = key,
                       ValidateIssuer = false,
-                      ValidateAudience = false
+                      ValidateAudience = false,
+                      ValidateLifetime = true,
+                      ClockSkew = TimeSpan.Zero
                   };
+                  opt.Events = new JwtBearerEvents
+                                     {
+                                         OnMessageReceived = context =>
+                                         {
+                                             var accessToken = context.Request.Query["access_token"];
+                                             var path = context.HttpContext.Request.Path;
+                                             if (!string.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/chat") || !string.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/notification"))))
+                                             {
+                                                 context.Token = accessToken;
+                                             }
+                                          
+                                             return Task.CompletedTask;
+                                         }
+                                     };
               });
                 services.AddAuthorization(opt =>
             {
@@ -96,6 +113,7 @@ namespace API
                 services.AddScoped<EmailSender>();
                 services.AddScoped<IPhotoAccessor, PhotoAccessor>();
                 services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
+                services.AddSignalR();
            // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
@@ -122,6 +140,8 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chat");
+                endpoints.MapHub<NotificatonHub>("/notification");
             });
              
 

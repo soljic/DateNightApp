@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
+using Application.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -50,5 +51,47 @@ namespace Application.Profiles
         //         return Result<List<UserActivityDto>>.Success(activities);
         //     }
         // }
+
+        public class Query : IRequest<Result<List<UserActivityDto>>>
+        {
+            public string UserName { get; set; }
+            public string Predicate { get; set; }
+        }
+
+        public class Handler : IRequestHandler<Query, Result<List<UserActivityDto>>>
+        {
+            private readonly DataContext _context;
+
+            private readonly IMapper _mapper;
+            private readonly IUserAccessor _userAccessor;
+
+            public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor)
+            {
+                _userAccessor = userAccessor;
+                _context = context;
+                _mapper = mapper;
+            }
+
+            public async Task<Result<List<UserActivityDto>>> Handle(Query request, CancellationToken cancellationToken)
+            {
+                var querry = _context.ActivityAttendees
+                     .Where(u => u.AppUser.UserName == request.UserName)
+                     .OrderBy(a => a.Activity.Date)
+                     .ProjectTo<UserActivityDto>(_mapper.ConfigurationProvider)
+                     .AsQueryable();
+
+
+                querry = request.Predicate switch
+                  {
+                       "past" => querry.Where(a => a.Date <= DateTime.UtcNow),
+                       "hosting" => querry.Where(a => a.HostUsername == request.UserName),
+                        _ => querry.Where(a => a.Date >= DateTime.UtcNow)
+                  };
+
+                    var activities = await querry.ToListAsync();
+
+                return Result<List<UserActivityDto>>.Success(activities);
+            }
+        }
     }
 }

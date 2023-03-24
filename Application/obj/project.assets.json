@@ -8644,19 +8644,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Filip\\.nuget\\packages\\": {}
+    "C:\\Users\\filip\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\Filip\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Application\\obj\\",
+      "projectPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8670,11 +8670,11 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Domain\\Domain.csproj"
+            "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Persistence\\Persistence.csproj": {
-              "projectPath": "C:\\Users\\Filip\\Desktop\\Reactivities\\Reactivities-2.0\\Persistence\\Persistence.csproj"
+            "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Persistence\\Persistence.csproj": {
+              "projectPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Persistence\\Persistence.csproj"
             }
           }
         }
