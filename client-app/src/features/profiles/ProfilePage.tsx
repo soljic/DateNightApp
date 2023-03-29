@@ -13,9 +13,9 @@ export default observer(function ProfilePage() {
     const { loadingProfile, loadProfile, profile, setActiveTab } = profileStore;
 
     useEffect(() => {
-        loadProfile(username);
+       if(username) loadProfile(username);
         console.log("NOTIFIKATIONS", notificationStore.notifications)
-        notificationStore.createHubConnection(username);
+        if(username) notificationStore.createHubConnection(username);
         return () => {
             notificationStore.clearNotifications();
             setActiveTab(0);

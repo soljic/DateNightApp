@@ -37,13 +37,14 @@ namespace Application.Activity
             public async Task<Result<PagedList<ActivityDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var query = _context.Activities
-                .Where(d => d.Date >= request.Params.StartDate)
                 .OrderBy(d => d.Date)
                 .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider,
                                 new { currentUsername = _userAccessor.GetUsername() })
                 .AsQueryable();
 
-                if(request.Params.IsGoing && !request.Params.IsHost)
+
+
+                if (request.Params.IsGoing && !request.Params.IsHost)
                 {
                     query = query.Where(x => x.Attendees.Any(a => a.Username == _userAccessor.GetUsername())); 
 

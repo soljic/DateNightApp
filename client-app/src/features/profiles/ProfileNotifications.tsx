@@ -53,7 +53,7 @@ export default observer(function ProfileNotifications() {
                         {notifications.map((notification: Notification) => (
                             <Card
                                 as={Link}
-                                to={`/activities/${notification.id}`}
+                                to={`/notifications/${notification.id}`}
                                 key={notification.id}
                             >
 

@@ -1,38 +1,38 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Application\\Application.csproj": {}
+    "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Application\\Application.csproj": {
+    "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Application\\obj\\",
+        "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\FilipŠoljić\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\FilipŠoljić\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.1"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.1": {
-            "targetAlias": "netstandard2.1",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Domain\\Domain.csproj"
+              "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Persistence\\Persistence.csproj"
+              "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -44,24 +44,20 @@
         }
       },
       "frameworks": {
-        "netstandard2.1": {
-          "targetAlias": "netstandard2.1",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[8.1.1, )"
+              "version": "[12.0.0, )"
             },
             "FluentValidation.AspNetCore": {
               "target": "Package",
-              "version": "[8.5.1, )"
+              "version": "[11.2.2, )"
             },
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[8.1.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.Relational": {
-              "target": "Package",
-              "version": "[5.0.16, )"
+              "version": "[11.0.0, )"
             }
           },
           "imports": [
@@ -70,42 +66,43 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "NETStandard.Library": {
+            "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Domain\\Domain.csproj": {
+    "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\FilipŠoljić\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\FilipŠoljić\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.1"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.1": {
-            "targetAlias": "netstandard2.1",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -116,22 +113,12 @@
         }
       },
       "frameworks": {
-        "netstandard2.1": {
-          "targetAlias": "netstandard2.1",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.13, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.13, )"
-            },
-            "System.ComponentModel.Annotations": {
-              "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -140,45 +127,46 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "NETStandard.Library": {
+            "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Persistence\\obj\\",
+        "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\FilipŠoljić\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\FilipŠoljić\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.1"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.1": {
-            "targetAlias": "netstandard2.1",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\filip\\Desktop\\Filipova sranja\\Reactivities2.0\\Domain\\Domain.csproj"
+              "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj"
               }
             }
           }
@@ -190,26 +178,26 @@
         }
       },
       "frameworks": {
-        "netstandard2.1": {
-          "targetAlias": "netstandard2.1",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.13, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "target": "Package",
-              "version": "[5.0.13, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[5.0.13, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.13, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -218,16 +206,17 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "NETStandard.Library": {
+            "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

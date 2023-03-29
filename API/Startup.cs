@@ -30,6 +30,7 @@ using Infrastructure.Email;
 using Application.Interfaces;
 using Infrastructure.Security;
 using Infrastructure.Photos;
+using FluentValidation;
 
 namespace API
 {
@@ -49,12 +50,11 @@ namespace API
             {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 opt.Filters.Add(new AuthorizeFilter(policy));
-            })
-                .AddFluentValidation(config => 
-            {
-                config.RegisterValidatorsFromAssemblyContaining<Create>();
             });
-             var connectionString = Configuration.GetConnectionString("DefaultConnecton");
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<Create>();
+
+            var connectionString = Configuration.GetConnectionString("DefaultConnecton");
             services.AddDbContext<DataContext>(opt =>{
                 opt.UseSqlite(connectionString);
             });
@@ -107,14 +107,18 @@ namespace API
                     policy.Requirements.Add(new IsHostRequirement());
                 });
             });
-                services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
-                services.AddScoped<IUserAccessor, UserAccessor>();
-                services.AddScoped<TokenService>();
-                services.AddScoped<EmailSender>();
-                services.AddScoped<IPhotoAccessor, PhotoAccessor>();
-                services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
-                services.AddSignalR();
-           // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddMediatR(typeof(List.Handler));
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<Create>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<EmailSender>();
+            services.AddScoped<TokenService>();
+            services.AddScoped<IUserAccessor, UserAccessor>();
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
+            services.AddSignalR();
+            // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

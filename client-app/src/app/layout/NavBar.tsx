@@ -1,38 +1,98 @@
-import { observer } from 'mobx-react-lite';
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Button, Container, Menu, Image, Dropdown } from 'semantic-ui-react';
-import { useStore } from '../stores/store';
+import { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+import { Button, Dropdown, Image } from "semantic-ui-react";
+import { useStore } from "../../app/stores/store";
+import LoginForm from "../../features/users/LoginForm";
+import RegisterForm from "../../features/users/RegisterForm";
+import "./NavBar.css";
 
-export default observer(function NavBar() {
-    const { userStore: { user, logout, isLoggedIn } } = useStore();
-    return (
-        <Menu inverted fixed='top'>
-            <Container>
-                <Menu.Item as={NavLink} exact to='/' header>
-                    <img src='/assets/logo.png' alt='logo' style={{ marginRight: '10px' }} />
-                    Reactivities
-                </Menu.Item>
-                {isLoggedIn &&
-                <>
-                <Menu.Item as={NavLink} to='/activities' name='Activities' />
-                <Menu.Item as={NavLink} to='/errors' name='Errors' />
-                <Menu.Item>
-                    <Button as={NavLink} to='/createActivity' positive content='Create Activity' />
-                </Menu.Item>
-                <Menu.Item position='right'>
-                    <Image src={user?.image || '/assets/user.png'} avatar spaced='right' />
-                    <Dropdown pointing='top left' text={user?.displayName}>
-                        <Dropdown.Menu>
-                            <Dropdown.Item as={Link} to={`/profiles/${user?.username}`} 
-                                text='My Profile' icon='user' />
-                            <Dropdown.Item onClick={logout} text='Logout' icon='power' />
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </Menu.Item>
-                </>}
-               
-            </Container>
-        </Menu>
-    )
-})
+export default function Navbar() {
+  const {
+    userStore: { user, isLoggedIn, logout }, modalStore
+  } = useStore();
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  function handleMenuClick() {
+    setMenuIsOpen(!menuIsOpen);
+  }
+
+  return (
+    <nav className="navbar">
+      <div className="navbarLogo">
+        <NavLink to="/">
+          <Image src="/assets/logo.png" alt="logo" />
+        </NavLink>
+      </div>
+      <div className={`navbarLinks ${menuIsOpen ? "navbarLinksMobile" : ""}`}>
+        {isLoggedIn ? (
+          <>
+            <NavLink to="/activities" className="navbarLink">
+              Activities
+            </NavLink>
+            <NavLink to="/createActivity">
+              <Button
+                className="navbarButton"
+                content="Create Activity"
+                positive
+              />
+            </NavLink>
+            <Dropdown
+              className="navbarDropdown"
+              trigger={
+                <span>
+                  <Image
+                    src={user?.image || "/assets/user.png"}
+                    avatar
+                    spaced="right"
+                  />
+                  {user?.displayName}
+                </span>
+              }
+            >
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  as={Link}
+                  to={`/profiles/${user?.username}`}
+                  text="My Profile"
+                  icon="user"
+                />
+                <Dropdown.Item onClick={logout} text="Logout" icon="power" />
+              </Dropdown.Menu>
+            </Dropdown>
+          </>
+        ) : (
+          <>
+            <NavLink to="/aboutUs" className="navbarLink">
+              About Us
+            </NavLink>
+            <NavLink to="/services" className="navbarLink">
+              Services
+            </NavLink>
+            <NavLink to="/gallery" className="navbarLink">
+              Gallery
+            </NavLink>
+            <div className="navbarButtonGroup">
+              <Button
+                onClick={() => modalStore.openModal(<LoginForm />)}
+                size="huge"
+                inverted
+              >
+                Login!
+              </Button>
+              <Button
+                onClick={() => modalStore.openModal(<RegisterForm />)}
+                size="huge"
+                inverted
+              >
+                Register!
+              </Button>
+            </div>
+          </>
+        )}
+      </div>
+      <div className="navbarMenuIcon" onClick={handleMenuClick}>
+        <i className={`fa ${menuIsOpen ? "fa-times" : "fa-bars"}`}></i>
+      </div>
+    </nav>
+  );
+}

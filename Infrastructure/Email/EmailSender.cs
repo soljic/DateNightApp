@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using System.Net.Mail;
 using Microsoft.Extensions.Configuration;
-using SendGrid;
-using SendGrid.Helpers.Mail;
+// using SendGrid;
+// using SendGrid.Helpers.Mail;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

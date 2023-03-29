@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Button, Header, Segment } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { useStore } from '../../../app/stores/store';
@@ -13,9 +13,9 @@ import MySelectInput from '../../../app/common/form/MySelectInput';
 import { categoryOptions } from '../../../app/common/options/categoryOptions';
 import MyDateInput from '../../../app/common/form/MyDateInput';
 import { ActivityFormValues } from '../../../app/models/activity';
+import { router } from '../../../app/router/Route';
 
 export default observer(function ActivityForm() {
-    const history = useHistory();
     const { activityStore } = useStore();
     const { createActivity, updateActivity, loadActivity, loadingInitial } = activityStore;
     const { id } = useParams<{ id: string }>();
@@ -41,9 +41,9 @@ export default observer(function ActivityForm() {
                 ...activity,
                 id: uuid()
             };
-            createActivity(newActivity).then(() => history.push(`/activities/${newActivity.id}`))
+            createActivity(newActivity).then(() =>  router.navigate(`/activities/${newActivity.id}`))
         } else {
-            updateActivity(activity).then(() => history.push(`/activities/${activity.id}`))
+            updateActivity(activity).then(() =>  router.navigate(`/activities/${activity.id}`))
         }
     }
 
