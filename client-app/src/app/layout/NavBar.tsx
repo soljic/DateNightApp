@@ -23,9 +23,9 @@ export default function Navbar() {
           <Image src="/assets/logo.png" alt="logo" />
         </NavLink>
       </div>
-      <div className={`navbarLinks ${menuIsOpen ? "navbarLinksMobile" : ""}`}>
         {isLoggedIn ? (
           <>
+          <div className={`navbarLinks ${menuIsOpen ? "navbarLinksMobile" : ""}`}>
             <NavLink to="/activities" className="navbarLink">
               Activities
             </NavLink>
@@ -36,6 +36,7 @@ export default function Navbar() {
                 positive
               />
             </NavLink>
+            </div>
             <Dropdown
               className="navbarDropdown"
               trigger={
@@ -59,9 +60,11 @@ export default function Navbar() {
                 <Dropdown.Item onClick={logout} text="Logout" icon="power" />
               </Dropdown.Menu>
             </Dropdown>
+
           </>
         ) : (
           <>
+            <div className={`navbarLinks ${menuIsOpen ? "navbarLinksMobile" : ""}`}>
             <NavLink to="/aboutUs" className="navbarLink">
               About Us
             </NavLink>
@@ -87,9 +90,9 @@ export default function Navbar() {
                 Register!
               </Button>
             </div>
+          </div>
           </>
         )}
-      </div>
       <div className="navbarMenuIcon" onClick={handleMenuClick}>
         <i className={`fa ${menuIsOpen ? "fa-times" : "fa-bars"}`}></i>
       </div>

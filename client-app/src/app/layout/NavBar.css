@@ -1,17 +1,17 @@
 /* Navbar */
 .navbar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     color: #fff;
     height: 80px;
     padding: 0 20px;
     margin: auto;
-    background: radial-gradient(
+    /* background: radial-gradient(
         50% 2900.76% at 50% 53.89%,
         rgba(58, 52, 86, 0.95) 0%,
         #211e2e 100%
-      ) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+      ); */
     box-shadow: 0px 4px 4px rgba(192, 183, 232, 0.01);
   }
   
