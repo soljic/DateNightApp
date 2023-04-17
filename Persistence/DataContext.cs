@@ -2,6 +2,7 @@
 using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace Persistence
 {
@@ -21,6 +22,10 @@ namespace Persistence
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<UserFollowing> UserFollowings { get; set; }
+        public DbSet<Quiz> Quizzes { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<QuizQuestion> QuizQuestions { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -28,6 +33,12 @@ namespace Persistence
                 base.OnModelCreating(builder);
 
         builder.Entity<ActivityAttendee>(x => x.HasKey(aa => new { aa.AppUserId, aa.ActivityId }));
+
+            builder.Entity<Question>()
+           .Property(q => q.Choices)
+           .HasConversion(
+               v => string.Join(',', v),
+               v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
 
             builder.Entity<ActivityAttendee>()
                 .HasOne(u => u.AppUser)

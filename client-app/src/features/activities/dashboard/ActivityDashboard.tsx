@@ -26,7 +26,7 @@ export default observer(function ActivityDashboard() {
   }, [activityRegistry.size, loadActivities]);
 
   return (
-    <div className="activity-dashboard">
+<>
       <div className="activity-dashboard__list">
         {activityStore.loadingInitial && !loadingNext ? (
           <>
@@ -52,6 +52,6 @@ export default observer(function ActivityDashboard() {
       <div className="activity-dashboard__filters">
         <ActivityFilters />
       </div>
-    </div>
+      </>
   );
 });

@@ -1,5 +1,8 @@
 /* Navbar */
 .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -13,11 +16,13 @@
         #211e2e 100%
       ); */
     box-shadow: 0px 4px 4px rgba(192, 183, 232, 0.01);
+    transition: position 0.3s ease-in-out;
   }
   
   .navbarLogo {
     width: 100px;
   }
+ 
   
   .navbarLogo img {
     width: 100%;
@@ -41,6 +46,48 @@
   
   .navbarButton {
     margin-right: 10px;
+  }
+
+  header .nav-btn {
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+	padding: 5px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+	color: white;
+	visibility: hidden;
+	opacity: 0;
+	font-size: 1.8rem;
+}
+
+@media screen and (max-width: 1024px) {
+    
+    header .nav-btn {
+		visibility: visible;
+		opacity: 1;
+        color: #fff;
+	}
+
+
+  .navbarBurgerButton{
+    visibility: visible;
+    opacity: 1;
+  }
+
+  
+  header .responsive_nav {
+   display: none;
+}
+
+nav .nav-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
   }
   
   /* Responsive Navbar */

@@ -7,6 +7,7 @@ import TestErrors from "../../features/errors/TestError";
 import ProfilePage from "../../features/profiles/ProfilePage";
 import App from "../layout/App";
 import RequireAuth from "./RequireAuth";
+import Quizz from "src/features/quizz/Quizz";
 export const routes: RouteObject[] = [
 {
 path: '/',
@@ -18,7 +19,7 @@ children: [
     {path: 'createActivity', element: <ActivityForm key='create' />},
     {path: 'manage/:id', element: <ActivityForm key='manage' />},
     {path: 'profiles/:username', element: <ProfilePage />},
-    {path: 'errors', element: <TestErrors />},
+    {path: 'quizzes', element: <Quizz />},
 ]},
 {path: 'server-error', element: <TestErrors />},
 {path: 'not-found', element: <NotFound />},
