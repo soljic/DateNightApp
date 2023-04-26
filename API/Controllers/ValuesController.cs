@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace DatingApp.API.Controllers
+namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -17,25 +17,25 @@ namespace DatingApp.API.Controllers
 
         public ValuesController(DataContext context)
         {
-            this._context = context;
+            _context = context;
 
         }
 
         // GET api/values
         [HttpGet]
-        public async Task< ActionResult<IEnumerable<Value>>> Get()
+        public async Task<ActionResult<IEnumerable<Value>>> Get()
         {
             var values = await _context.Values.ToListAsync();
             return Ok(values);
 
         }
-            
+
         // GET api/values/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Value>> Get(int id)
         {
-            var result = await _context.Values.FirstOrDefaultAsync(v => v.Id==id);
-            return  Ok(result); 
+            var result = await _context.Values.FirstOrDefaultAsync(v => v.Id == id);
+            return Ok(result);
         }
 
         // POST api/values
