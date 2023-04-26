@@ -6,6 +6,7 @@ import { Photo, Profile, UserActivity } from '../models/profile';
 import { User, UserFormValues } from '../models/user';
 import { router } from '../router/Route';
 import { store } from '../stores/store';
+import { CustomerBasket } from '../models/basket';
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -82,6 +83,14 @@ const Activities = {
     update: (activity: ActivityFormValues) => requests.put<void>(`/activities/${activity.id}`, activity),
     delete: (id: string) => requests.del<void>(`/activities/${id}`),
     attend: (id: string) => requests.post<void>(`/activities/${id}/attend`, {})
+}
+
+
+const Basket = {
+    get: (basketId: string) => requests.get<CustomerBasket>(`/basket/${basketId}`),
+    create: (customerBasket: CustomerBasket) => requests.post<CustomerBasket>('/basket', customerBasket),
+    update: (customerBasket: CustomerBasket) => requests.put<void>(`/basket/${customerBasket.id}`, customerBasket),
+    delete: (id: string) => requests.del<void>(`/basket/${id}`)
 }
 
 const Account = {

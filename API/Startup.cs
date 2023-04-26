@@ -31,6 +31,7 @@ using Application.Interfaces;
 using Infrastructure.Security;
 using Infrastructure.Photos;
 using FluentValidation;
+using StackExchange.Redis;
 
 namespace API
 {
@@ -107,8 +108,13 @@ namespace API
                     policy.Requirements.Add(new IsHostRequirement());
                 });
             });
+            services.AddSingleton<IConnectionMultiplexer>(c => 
+            {
+                var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(configuration);
+            }); 
             services.AddMediatR(typeof(List.Handler));
-            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<Create>();
             services.AddHttpContextAccessor();

@@ -3,6 +3,8 @@ using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Reflection.Emit;
+using Domain.OrderAggregate;
+using System.Reflection;
 
 namespace Persistence
 {
@@ -25,14 +27,81 @@ namespace Persistence
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<Domain.Address> Addresses { get; set; }
         public DbSet<QuizQuestion> QuizQuestions { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductBrand> ProductBrands { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
           {
                 base.OnModelCreating(builder);
 
-        builder.Entity<ActivityAttendee>(x => x.HasKey(aa => new { aa.AppUserId, aa.ActivityId }));
+            if (Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
+            {
+                foreach (var entityType in builder.Model.GetEntityTypes())
+                {
+                    var properties = entityType.ClrType.GetProperties().Where(p => p.PropertyType == typeof(decimal));
+
+                    foreach (var property in properties)
+                    {
+                        builder.Entity(entityType.Name).Property(property.Name).HasConversion<double>();
+                    }
+                }
+            }
+
+            builder.Entity<Order>(entity =>
+            {
+                entity.OwnsOne(o => o.ShipToAddress, a =>
+                {
+                    a.WithOwner();
+                });
+
+                entity.Navigation(a => a.ShipToAddress).IsRequired();
+
+                entity.Property(s => s.Status)
+               .HasConversion(
+                   o => o.ToString(),
+                   o => (OrderStatus)Enum.Parse(typeof(OrderStatus), o)
+               );
+                entity.HasMany(o => o.OrderItems).WithOne().OnDelete(DeleteBehavior.Cascade);
+
+            });
+
+            builder.Entity<Product>(entity =>
+            {
+                entity.Property(p => p.Id).IsRequired();
+                entity.Property(p => p.Name).IsRequired().HasMaxLength(100);
+                entity.Property(p => p.Description).IsRequired();
+                entity.Property(p => p.Price).HasColumnType("decimal(18,2)");
+                entity.Property(p => p.PictureUrl).IsRequired();
+                entity.HasOne(p => p.ProductBrand).WithMany()
+                    .HasForeignKey(p => p.ProductBrandId);
+                entity.HasOne(p => p.ProductType).WithMany()
+                    .HasForeignKey(p => p.ProductTypeId);
+
+            });
+
+
+            builder.Entity<OrderItem>(entity =>
+            {
+                entity.OwnsOne(c => c.ItemOrdered).WithOwner();
+                entity.Property(i => i.Price)
+                .HasColumnType("decimal(18,2)");
+
+            });
+
+            builder.Entity<DeliveryMethod>(entity =>
+            {
+                entity.Property(d => d.Price)
+                .HasColumnType("decimal(18,2)");
+            });
+
+            builder.Entity<ActivityAttendee>(x => x.HasKey(aa => new { aa.AppUserId, aa.ActivityId }));
 
             builder.Entity<Question>()
            .Property(q => q.Choices)

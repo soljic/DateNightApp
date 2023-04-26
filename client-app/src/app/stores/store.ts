@@ -1,3 +1,4 @@
+import ShoppingCartStore from './shoppingCartStore';
 import { createContext, useContext } from "react";
 import ActivityStore from "./activityStore";
 import CommentStore from "./commentStore";
@@ -15,6 +16,7 @@ interface Store {
     profileStore: ProfileStore;
     commentStore: CommentStore;
     notificationStore: NotificationStore;
+    shoppingCartStore: ShoppingCartStore;
 }
 
 export const store: Store = {
@@ -25,6 +27,7 @@ export const store: Store = {
     profileStore: new ProfileStore(),
     commentStore: new CommentStore(),
     notificationStore: new NotificationStore(),
+    shoppingCartStore: new ShoppingCartStore(),
 }
 
 export const StoreContext = createContext(store);

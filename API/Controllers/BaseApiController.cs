@@ -8,11 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 
 using Application.Core;
-using API.Extensions;
 
 namespace API.Controllers
 {
-     [ApiController]
+    [ApiController]
     [Route("api/[controller]")]
     public class BaseApiController : ControllerBase
     {

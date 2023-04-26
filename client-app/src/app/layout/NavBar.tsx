@@ -1,18 +1,22 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Button, Dropdown, Image } from "semantic-ui-react";
+import { Button, Dropdown, Icon, Image, Label } from "semantic-ui-react";
 import { useStore } from "../../app/stores/store";
 import LoginForm from "../../features/users/LoginForm";
 import RegisterForm from "../../features/users/RegisterForm";
 import "./NavBar.css";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaShoppingBasket } from "react-icons/fa";
+import { observer } from "mobx-react-lite";
+import ShoppingCart from "src/features/store/ShoppingCart";
 
-export default function Navbar() {
+ function Navbar() {
   const {
     userStore: { user, isLoggedIn, logout },
+    shoppingCartStore: { cartQuantity, isOpen, closeCart, openCart },
     modalStore,
   } = useStore();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [basketItemsCount, setBasketItemsCount] = useState(0);
 
   const navRef = useRef<HTMLElement | null>(null);
 
@@ -24,6 +28,11 @@ export default function Navbar() {
   function handleMenuClick() {
     setMenuIsOpen(!menuIsOpen);
   }
+ 
+  useEffect(() => {
+    setBasketItemsCount(cartQuantity);
+    
+  }, [cartQuantity]); // Ovo je samo primjer, zamijenite ovu vrijednost sa stvarnim brojem predmeta u košarici
 
   return (
     <>
@@ -36,6 +45,7 @@ export default function Navbar() {
         <nav className="navbar" ref={navRef}>
           {isLoggedIn ? (
             <>
+            <ShoppingCart /> 
               <div
                 className={`navbarLinks ${
                   menuIsOpen ? "navbarLinksMobile" : ""
@@ -46,6 +56,9 @@ export default function Navbar() {
                 </NavLink>
                 <NavLink to="/quizzes" className="navbarLink">
                   Quizz
+                </NavLink>
+                <NavLink to="/store" className="navbarLink">
+                  Store
                 </NavLink>
                 <NavLink to="/createActivity">
                   <Button
@@ -74,6 +87,29 @@ export default function Navbar() {
                     to={`/profiles/${user?.username}`}
                     text="My Profile"
                     icon="user"
+                  />
+                    <Dropdown.Item
+                    onClick={() => openCart()}
+                    text={
+                      <span>
+                        Basket 
+                        <Icon.Group>
+                          {/* Provjeravamo ima li vrijednosti za basketItemsCount */}
+                          {basketItemsCount && basketItemsCount> 0 ? (
+                            <Label
+                              circular
+                              color="red"
+                              size="mini"
+                              floating
+                              content={basketItemsCount}
+                              className="redDot"
+                            />
+                          ) : null}
+                        </Icon.Group>{" "}
+                      </span>
+                    }
+                    
+                    icon="shopping basket"
                   />
                   <Dropdown.Item onClick={logout} text="Logout" icon="power" />
                 </Dropdown.Menu>
@@ -125,3 +161,4 @@ export default function Navbar() {
     </>
   );
 }
+export default observer(Navbar);

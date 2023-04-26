@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 
-namespace API.Extensions
+namespace API
 {
     public static class HttpExtensions
     {
@@ -15,7 +15,7 @@ namespace API.Extensions
                 totalItems,
                 totalPages
             };
-            response.Headers.Add("Pagination", JsonSerializer.Serialize(paginationHeader)); 
+            response.Headers.Add("Pagination", JsonSerializer.Serialize(paginationHeader));
         }
     }
 }

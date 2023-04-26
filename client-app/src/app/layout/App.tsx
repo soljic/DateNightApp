@@ -9,6 +9,7 @@ import LoadingComponent from './LoadingComponent';
 import ModalContainer from '../common/modals/ModalContainer';
 import HomePage from '../../features/home/HomePage';
 import Layout from './Layout';
+import ShoppingCart from 'src/features/store/ShoppingCart';
 
 function App() {
 
