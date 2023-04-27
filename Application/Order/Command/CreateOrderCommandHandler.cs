@@ -37,7 +37,6 @@ namespace Application.Order.Command
 
            var basket = basketRedis.IsNullOrEmpty ? null : JsonSerializer.Deserialize<CustomerBasket>(basketRedis);
             List<OrderItem> orderItems = new List<OrderItem>();
-
             foreach (var item in basket.Items)
             {
                 var productItem = await _context.Products.FindAsync(item.Id);

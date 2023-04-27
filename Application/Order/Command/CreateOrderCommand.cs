@@ -11,6 +11,13 @@ namespace Application.Order.Command
 {
     public class CreateOrderCommand : IRequest<OrderDto>
     {
+        public CreateOrderCommand(int deliveryMethod, string buyerEmail, string basketId, OrderAddress shippingAddress)
+        {
+            DeliveryMethod = deliveryMethod;
+            BuyerEmail = buyerEmail;
+            BasketId = basketId;
+            ShippingAddress = shippingAddress;
+        }
         public string BuyerEmail { get; set; }
         public int DeliveryMethod { get; set; }
         public string BasketId { get; set; }
