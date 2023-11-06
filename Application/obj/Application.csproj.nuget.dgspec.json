@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\Application.csproj": {}
+    "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Application\\Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\Application.csproj": {
+    "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\Application.csproj",
+        "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\FilipŠoljić\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\obj\\",
+        "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\FilipŠoljić\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj"
+              "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\Persistence.csproj"
+              "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -84,14 +84,14 @@
         }
       }
     },
-    "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj": {
+    "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\FilipŠoljić\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\FilipŠoljić\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -149,14 +149,14 @@
         }
       }
     },
-    "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\Persistence.csproj",
+        "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Persistence\\Persistence.csproj",
         "packagesPath": "C:\\Users\\FilipŠoljić\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Persistence\\obj\\",
+        "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\FilipŠoljić\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -173,8 +173,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Domain\\Domain.csproj"
+              "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\Domain.csproj"
               }
             }
           }

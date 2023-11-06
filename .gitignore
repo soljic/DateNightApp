@@ -13,8 +13,71 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+
+# .NET
+bin/
+obj/
+*.suo
+*.user
+*.sln.docstates
+
+# Visual Studio files
+.vscode/
+.vs/
+*.suo
+*.user
+*.sln.docstates
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Rider files
+.idea/
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Visual Studio for Mac
+.vscode/
+.vs/
+.suo
+.user
+.suo
+*.user
+*.sln.docstates
+
+# Rider
+.idea/
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+
 # Mono auto generated files
 mono_crash.*
+
+# General
+node_modules/
+build/
+npm-debug.log
+yarn-error.log
+
+# Editor-specific
+.vscode/
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
 
 # Build results
 [Dd]ebug/

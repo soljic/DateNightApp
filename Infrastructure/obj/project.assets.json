@@ -2063,11 +2063,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Infrastructure\\Infrastructure.csproj",
+      "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\FilipŠoljić\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\FilipŠoljić\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2084,8 +2084,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\Application.csproj"
+            "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Application\\Application.csproj"
             }
           }
         }

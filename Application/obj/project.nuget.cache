@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pZ0T+KLo4xwczYVTuJN59d6NJg0CJZgPOZeeYPQc3GFfX3/vyxFd4HFxKgZJO/LVrRiCNi8mDOdz9yPZ9xXXyg==",
+  "dgSpecHash": "jQSzjwE8EJUSBOmYl31k9852LPBCxeBC2JsQXSy36bf9uRfrK59v0GInRrECuPGVFBViMypk3LXvP6ysqL9gBw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\FilipŠoljić\\Desktop\\Reactivities-2.0\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FilipŠoljić\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\FilipŠoljić\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
