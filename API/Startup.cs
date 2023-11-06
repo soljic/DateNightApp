@@ -65,8 +65,14 @@ namespace API
                     policy.AllowAnyHeader().AllowCredentials().WithExposedHeaders("www-authenticate", "Pagination").AllowAnyMethod().WithOrigins("http://localhost:3000");
                 });
             });
-            services.AddMediatR(typeof(List.Handler).Assembly);
-              services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+            
+            services.AddMediatR(cfg => 
+            {
+                cfg.RegisterServicesFromAssemblyContaining<Program>();
+                cfg.RegisterServicesFromAssembly(typeof(Create).Assembly);
+
+            });
+              //services.AddAutoMapper(typeof(Application.Core.MappingProfiles).Assembly);
               services.AddIdentityCore<AppUser>(opt => {
                   opt.Password.RequireNonAlphanumeric = false;
                   opt.SignIn.RequireConfirmedEmail = true;
@@ -112,9 +118,16 @@ namespace API
             {
                 var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
                 return ConnectionMultiplexer.Connect(configuration);
-            }); 
-            services.AddMediatR(typeof(List.Handler));
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            });
+           
+            //services.Configure<MediatRServiceConfiguration>(cfg => {
+            //    // Ovdje možete postaviti razne postavke za MediatR
+            //    cfg.Lifetime = ServiceLifetime.Scoped;
+            //    cfg.RegisterServicesFromAssemblyContaining<List.Handler>();
+            //});
+
+
+            services.AddAutoMapper(typeof(API.Helpers.MappingProfiles).Assembly);
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<Create>();
             services.AddHttpContextAccessor();

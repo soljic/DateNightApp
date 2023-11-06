@@ -45,7 +45,7 @@ namespace Application.Order.Command
                 orderItems.Add(orderItem);
             }
 
-            var deliveryMethod = await _context.DeliveryMethods.FindAsync(request.DeliveryMethod);
+            var deliveryMethod = await _context.DeliveryMethods.FindAsync(request.DeliveryMethodId);
 
             var subtotal = orderItems.Sum(item => item.Price * item.Quantity);
 

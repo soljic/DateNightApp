@@ -13,13 +13,13 @@ namespace Application.Order.Command
     {
         public CreateOrderCommand(int deliveryMethod, string buyerEmail, string basketId, OrderAddress shippingAddress)
         {
-            DeliveryMethod = deliveryMethod;
+            DeliveryMethodId = deliveryMethod;
             BuyerEmail = buyerEmail;
             BasketId = basketId;
             ShippingAddress = shippingAddress;
         }
         public string BuyerEmail { get; set; }
-        public int DeliveryMethod { get; set; }
+        public int DeliveryMethodId { get; set; }
         public string BasketId { get; set; }
         public OrderAddress ShippingAddress { get; set; }
     }

@@ -21,7 +21,7 @@ namespace Domain.OrderAggregate
             Subtotal = subtotal;
             PaymentIntentId = paymentIntentId;
         }
-
+        
         public int Id { get; set; }
 
         public string BuyerEmail { get; set; }
