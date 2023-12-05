@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\Domain.csproj": {}
+    "C:\\Users\\FilipŠoljić\\source\\repos\\DateNightApp\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\Domain.csproj": {
+    "C:\\Users\\FilipŠoljić\\source\\repos\\DateNightApp\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\FilipŠoljić\\source\\repos\\DateNightApp\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\FilipŠoljić\\source\\repos\\DateNightApp\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\FilipŠoljić\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\FilipŠoljić\\source\\repos\\DateNightApp\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\FilipŠoljić\\AppData\\Roaming\\NuGet\\NuGet.Config",

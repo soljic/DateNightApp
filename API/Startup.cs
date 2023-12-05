@@ -32,6 +32,7 @@ using Infrastructure.Security;
 using Infrastructure.Photos;
 using FluentValidation;
 using StackExchange.Redis;
+using Microsoft.OpenApi.Models;
 
 namespace API
 {
@@ -59,6 +60,12 @@ namespace API
             services.AddDbContext<DataContext>(opt =>{
                 opt.UseSqlite(connectionString);
             });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DateNightApp", Version = "v1" });
+            });
+
             services.AddCors(opt => {
                 opt.AddPolicy("CorsPolicy", policy  =>
                 {
@@ -121,7 +128,7 @@ namespace API
             });
            
             //services.Configure<MediatRServiceConfiguration>(cfg => {
-            //    // Ovdje možete postaviti razne postavke za MediatR
+            //    // Ovdje moï¿½ete postaviti razne postavke za MediatR
             //    cfg.Lifetime = ServiceLifetime.Scoped;
             //    cfg.RegisterServicesFromAssemblyContaining<List.Handler>();
             //});
@@ -144,21 +151,26 @@ namespace API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseMiddleware<ExceptionMiddleware>();
-
-            if (env.IsDevelopment())
+            // app.UseHttpsRedirection();
+            // app.UseMvc(); 
+            if (env.IsDevelopment()) 
             {
-                
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
-
-           // app.UseHttpsRedirection();
-          // app.UseMvc(); 
-
             app.UseRouting();
 
             app.UseCors("CorsPolicy");
 
+
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("v1/swagger.json", "DateNightApp");
+            //});
 
             app.UseEndpoints(endpoints =>
             {

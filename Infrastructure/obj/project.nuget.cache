@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XqggGS1m6NT50qGbTCd2F9FzOANbOvtU1SPoL3gMHtOs/RORE45la8ATeMk+4JVNTP6b3ENOB0jYDIbaonIqqw==",
+  "dgSpecHash": "outvEeTbOl+zxpI7pJKO3AmAEGeJAus7qoHpdklJ4FPotK494OSItziZt3x+M8j1bBkcgmAqKT7iCfbjQaOUnA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\FilipŠoljić\\Desktop\\masterMeal\\masterMeal\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\FilipŠoljić\\source\\repos\\DateNightApp\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\FilipŠoljić\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\FilipŠoljić\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
