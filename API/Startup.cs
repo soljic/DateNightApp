@@ -1,25 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Middleware;
 using API.Services;
 using API.SignalR;
 using Application.Activity;
-using Application.Core;
 using Domain;
 using FluentValidation.AspNetCore;
-using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore.SqlServer;
 using Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -33,6 +20,8 @@ using Infrastructure.Photos;
 using FluentValidation;
 using StackExchange.Redis;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace API
 {
@@ -56,10 +45,12 @@ namespace API
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<Create>();
 
-            var connectionString = Configuration.GetConnectionString("DefaultConnecton");
-            services.AddDbContext<DataContext>(opt =>{
-                opt.UseSqlite(connectionString);
-            });
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<DataContext>(options =>
+            options.UseSqlServer(connectionString)
+            .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information)
+
+ );
 
             services.AddSwaggerGen(c =>
             {
@@ -88,33 +79,46 @@ namespace API
               .AddSignInManager<SignInManager<AppUser>>()
               .AddDefaultTokenProviders();
               var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
-              services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-              .AddJwtBearer(opt =>{
-                  opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                  {
-                      ValidateIssuerSigningKey = true,
-                      IssuerSigningKey = key,
-                      ValidateIssuer = false,
-                      ValidateAudience = false,
-                      ValidateLifetime = true,
-                      ClockSkew = TimeSpan.Zero
-                  };
-                  opt.Events = new JwtBearerEvents
-                                     {
-                                         OnMessageReceived = context =>
-                                         {
-                                             var accessToken = context.Request.Query["access_token"];
-                                             var path = context.HttpContext.Request.Path;
-                                             if (!string.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/chat") || !string.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/notification"))))
-                                             {
-                                                 context.Token = accessToken;
-                                             }
-                                          
-                                             return Task.CompletedTask;
-                                         }
-                                     };
-              });
-                services.AddAuthorization(opt =>
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            })
+                .AddCookie()
+                .AddGoogle(options =>
+                {
+                    var googleConfig = Configuration.GetSection("Google");
+                    options.ClientId = googleConfig["ClientId"];
+                    options.ClientSecret = googleConfig["ClientSecret"];
+                })
+                .AddJwtBearer(opt => 
+                {
+                    // Postavke za JwtBearer autentikaciju
+                    opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = key,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.Zero
+                    };
+                    opt.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            var accessToken = context.Request.Query["access_token"];
+                            var path = context.HttpContext.Request.Path;
+                            if (!string.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/chat") || !string.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/notification"))))
+                            {
+                                context.Token = accessToken;
+                            }
+
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
+            services.AddAuthorization(opt =>
             {
                 opt.AddPolicy("IsActivityHost", policy =>
                 {

@@ -17,12 +17,14 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication;
+using Newtonsoft.Json;
+using Google.Apis.Auth;
 // using Newtonsoft.Json;
 
 namespace API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/account")]
     public class AccountController : ControllerBase
     {
         private readonly UserManager<AppUser> _userManager;
@@ -44,7 +46,7 @@ namespace API.Controllers
             _userManager = userManager;
             _httpClient = new HttpClient
             {
-                BaseAddress = new System.Uri("https://graph.facebook.com")
+                BaseAddress = new System.Uri("https://accounts.google.com")
             };
         }
 
@@ -209,6 +211,67 @@ namespace API.Controllers
         //         await SetRefreshToken(user);
         //         return CreateUserObject(user);
         //     }
+
+        [AllowAnonymous]
+        [HttpPost("google-login")]
+        public async Task<ActionResult<UserDto>> GoogleLogin(string accessToken)
+        {
+            if (string.IsNullOrEmpty(accessToken))
+            {
+                return BadRequest("Access token is required");
+            }
+
+            var googleClientId = _config["Google:ClientId"];
+            if (string.IsNullOrEmpty(googleClientId))
+            {
+                return BadRequest("Google Client Id is not configured");
+            }
+
+            var validationSettings = new GoogleJsonWebSignature.ValidationSettings
+            {
+                Audience = new[] { googleClientId } 
+            };
+
+            if (validationSettings.Equals(null)) return Unauthorized();
+
+            var payload = GoogleJsonWebSignature.ValidateAsync(accessToken, validationSettings).Result;
+
+            if (payload.Equals(null)) return Unauthorized();
+
+            var username = payload.Subject;
+            var name = payload.Name;
+            var email = payload.Email;
+            var pictureUrl = payload.Picture;
+
+            var user = await _userManager.Users.Include(p => p.Phots)
+                .FirstOrDefaultAsync(x => x.UserName == username);
+
+            if (user != null) return CreateUserObject(user);
+
+            user = new AppUser
+            {
+                DisplayName = name,
+                Email = email,
+                UserName = username,
+                Phots = new List<Photo>
+                 {
+                     new Photo
+                     {
+                         Id = "fb_" + pictureUrl,
+                         Url = pictureUrl,
+                         IsMain = true
+                     }}
+            };
+
+            user.EmailConfirmed = true;
+
+            var result = await _userManager.CreateAsync(user);
+
+            if (!result.Succeeded) return BadRequest("Problem creating user account");
+
+            await SetRefreshToken(user);
+            return CreateUserObject(user);
+        }
 
         [Authorize]
         [HttpPost("refreshToken")]

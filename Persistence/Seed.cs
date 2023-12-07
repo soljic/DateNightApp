@@ -28,36 +28,6 @@ namespace Persistence
             var projectName = Path.GetFileNameWithoutExtension(projectPath);
             var directoryPath = Path.Combine(projectPath, "Data", "SeedData");
 
-            if (!context.ProductBrands.Any())
-            {
-                var brandsData = File.ReadAllText(Path.Combine(directoryPath,"brands.json"));
-                var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
-                context.ProductBrands.AddRange(brands);
-            }
-
-            if (!context.ProductTypes.Any())
-            {
-                var typesData = File.ReadAllText(Path.Combine(directoryPath,"types.json"));
-                var types = JsonSerializer.Deserialize<List<ProductType>>(typesData);
-                context.ProductTypes.AddRange(types);
-            }
-
-            if (!context.Products.Any())
-            {
-                var productsData = File.ReadAllText(Path.Combine(directoryPath,"products.json"));
-                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                var products = JsonSerializer.Deserialize<List<Product>>(productsData, options);
-                context.Products.AddRange(products);
-            }
-
-            if (!context.DeliveryMethods.Any())
-            {
-                var deliveryData = File.ReadAllText(Path.Combine(directoryPath, "delivery.json"));
-                var methods = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryData);
-                context.DeliveryMethods.AddRange(methods);
-            }
-
-            if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();
             if (!userManager.Users.Any() && !context.Activities.Any())
             {
                 var users = new List<AppUser>
