@@ -3,7 +3,7 @@ using System.Text;
 using API.DTOs;
 using API.Services;
 using Domain;
-using Infrastructure.Email;
+using Application.Infrastructure.Email;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +28,7 @@ namespace API.Controllers
 
         public AccountController(UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager, TokenService tokenService,
-            IConfiguration config, Infrastructure.Email.EmailSender emailSender)
+            IConfiguration config, Application.Infrastructure.Email.EmailSender emailSender)
         {
             _emailSender = emailSender;
             _config = config;

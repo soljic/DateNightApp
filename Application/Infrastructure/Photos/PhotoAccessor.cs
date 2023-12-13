@@ -1,14 +1,12 @@
-using System;
-using System.Threading.Tasks;
+using Application.Infrastructure.Photos;
 using Application.Interfaces;
 using Application.Photos;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using Infrastructure.Photos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
-namespace Infrastructure.Photos
+namespace Application.Infrastructure.Photos
 {
     public class PhotoAccessor : IPhotoAccessor
     {

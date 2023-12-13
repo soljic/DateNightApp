@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace Infrastructure.Email
+namespace Application.Infrastructure.Email
 {
     public class EmailSender
     {
