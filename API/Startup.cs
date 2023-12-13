@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Infrastructure.Email;
 using Application.Interfaces;
+using Application.Movies;
+using AutoMapper;
 using Infrastructure.Security;
 using Infrastructure.Photos;
 using FluentValidation;
@@ -51,7 +53,8 @@ namespace API
             .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information)
 
  );
-
+            services.AddSingleton<MovieService>();
+            services.AddSingleton<MovieHttpClient>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DateNightApp", Version = "v1" });
@@ -60,7 +63,7 @@ namespace API
             services.AddCors(opt => {
                 opt.AddPolicy("CorsPolicy", policy  =>
                 {
-                    policy.AllowAnyHeader().AllowCredentials().WithExposedHeaders("www-authenticate", "Pagination").AllowAnyMethod().WithOrigins("http://localhost:3000");
+                    policy.AllowAnyHeader().AllowCredentials().WithExposedHeaders("www-authenticate", "Pagination").AllowAnyMethod().WithOrigins("http://localhost:3000","http://localhost:5000");
                 });
             });
             
