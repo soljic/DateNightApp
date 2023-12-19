@@ -43,6 +43,12 @@ namespace Persistence
 
         protected override void OnModelCreating(ModelBuilder builder)
           {
+              
+           builder.Entity<AppUser>()
+              .HasOne(u => u.Partner)
+              .WithOne()
+              .HasForeignKey<AppUser>(u => u.PartnerId);
+           
             builder.Entity<Order>(entity =>
             {
                 entity.OwnsOne(o => o.ShipToAddress, a =>

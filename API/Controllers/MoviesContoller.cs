@@ -22,7 +22,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> List([FromQuery] MDbParams mDbparams)
         {
-            return HandlePagedResultApi(await _mediator.Send(new GetMoviesQuery{ MDbparams = mDbparams}));
+            return HandleResult(await _mediator.Send(new GetMoviesQuery{ MDbparams = mDbparams}));
         }
 
          [HttpGet("{id}")]

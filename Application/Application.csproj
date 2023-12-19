@@ -10,6 +10,7 @@
 		<PackageReference Include="MediatR" Version="12.0.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="StackExchange.Redis" Version="2.6.104" />
+		<PackageReference Include="StackExchange.Redis.Extensions.Core" Version="9.1.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Basket\Queries\" />
