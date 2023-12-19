@@ -28,8 +28,12 @@ namespace Application.Movies.Queries
             {
                 throw new ApplicationException("Problem getting the items");
             }
+            foreach (var movie in movies) 
+            {
+                movie.Cast = movie.Cast.Take(5).ToList();
+            } 
             return Result<PagedListApi<Movie>>.Success(
-                PagedListApi<Movie>.CreateAsync(movies,request.MDbparams.PageNumber, request.MDbparams.PageSize)
+                PagedListApi<Movie>.CreateAsync(movies,request.MDbparams.PageNumber!.Value, request.MDbparams.PageSize)
             );
             
         }

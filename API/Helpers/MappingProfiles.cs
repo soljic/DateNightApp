@@ -28,6 +28,7 @@ namespace API.Helpers
             //.ForMember(dest => dest.PictureUrl, opt => opt.MapFrom<ProductPictureUrlResolver>());
 
             CreateMap<Address, AddressDto>().ReverseMap();
+            CreateMap<AppUser, UserDto>().ReverseMap();
             CreateMap<CustomerBasketDto, CustomerBasket>().ReverseMap();
             CreateMap<BasketItemDto, BasketItem>();
             string currentUsername = null;
@@ -89,8 +90,20 @@ namespace API.Helpers
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => Guid.NewGuid()))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Overview))
                 .ForMember(dest => dest.DateOfRelease, opt => opt.MapFrom(src => src.ReleaseDate))
-                .ForMember(dest => dest.CoverPhoto, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.PosterPath) ? null : $"https://api.themoviedb.org/3/movie/{src.Id}/images"))
-                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title));
+                .ForMember(dest => dest.CoverPhoto,
+                    opt => opt.MapFrom(src =>
+                        string.IsNullOrEmpty(src.PosterPath)
+                            ? null
+                            : $"https://api.themoviedb.org/3/movie/{src.Id}/images"))
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
+                .ForMember(dest => dest.GenreIds, opt => opt.MapFrom(src => src.GenreIds))
+                .ForMember(dest => dest.Director, opt => opt.MapFrom(src => src.Director))
+                .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => src.VoteAverage))
+                .ForMember(dest => dest.Cast, opt => opt.MapFrom(src => src.Actors != null ? src.Actors.Select(apiAct => new Actor()
+                {
+                    Id = apiAct.Id,
+                    Name = apiAct.Name
+                }).ToList() : new List<Actor>()));
 
 
 

@@ -28,13 +28,14 @@ public class MovieHttpClient
         };
 
         // Postavljanje tokena u zaglavlje za autorizaciju
-        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _configuration.GetSection("MovieService:AccessToken").Value);
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
+            _configuration.GetSection("MovieService:AccessToken").Value);
     }
 
     public async Task<List<ApiMovie>> GetMoviesAsync(string url)
     {
         string apiKey = _configuration.GetSection("MovieService:ApiKey").Value;
-        
+
         var response = await _httpClient.GetAsync($"{url}&api_key={apiKey}");
 
         if (response.IsSuccessStatusCode)
@@ -62,4 +63,49 @@ public class MovieHttpClient
             return null; // Ovo se nikada neće izvršiti, ali je potrebno zbog povratnog tipa
         }
     }
+
+    public async Task<ApiCredits> GetMoviesCreditsAsync(string url)
+    {
+        string apiKey = _configuration.GetSection("MovieService:ApiKey").Value;
+
+        try
+        {
+            var response = await _httpClient.GetAsync($"{url}&api_key={apiKey}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var settings = new JsonSerializerSettings
+                {
+                    Converters = { new ApiCreditsConverter() },
+                    ContractResolver = new DefaultContractResolver
+                    {
+                        NamingStrategy = new CamelCaseNamingStrategy()
+                    },
+                    Formatting = Formatting.Indented
+                };
+
+                var production = JsonConvert.DeserializeObject<ApiCredits>(jsonString, settings);
+
+                return production;
+            }
+            else
+            {
+                // Ako zahtjev nije uspješan, obradi grešku (npr. bacanjem iznimke)
+                return null;
+
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+            }
+            return null;
+        }
+    }
+
+
 }

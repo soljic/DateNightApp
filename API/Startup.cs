@@ -56,6 +56,7 @@ namespace API
  );
             services.AddSingleton<MovieService>();
             services.AddSingleton<MovieHttpClient>();
+            services.AddHttpClient();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DateNightApp", Version = "v1" });
@@ -84,10 +85,9 @@ namespace API
               .AddDefaultTokenProviders();
               var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
             services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-            })
+                {
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme; 
+                })
                 .AddCookie()
                 .AddGoogle(options =>
                 {
