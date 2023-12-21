@@ -1,8 +1,9 @@
 ﻿using System.Text.Json;
+using Application.Core;
 using AutoMapper;
 using Domain;
-using StackExchange.Redis;
-using StackExchange.Redis.Extensions.Core.Abstractions;
+using Domain.Helpers;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Application.Movies;
 
@@ -10,26 +11,29 @@ public class MovieService
 {
     private readonly MovieHttpClient _httpClient;
     private readonly IMapper _mapper;
-    private readonly StackExchange.Redis.IDatabase _redis;
+    private readonly IMemoryCache _cache;
 
-    public MovieService(MovieHttpClient httpClient, IMapper mapper, IConnectionMultiplexer  redis)
+    public MovieService(MovieHttpClient httpClient, IMapper mapper, IMemoryCache cache)
     {
         _httpClient = httpClient;
         _mapper = mapper;
-        _redis = redis.GetDatabase();
+        _cache = cache;
     }
     public async Task<List<Movie>> GetMovies(MDbParams mDbParams)
     {
-        string cacheKey = $"movies_{mDbParams.Search ?? ""}_{mDbParams.Trending ?? ""}_{mDbParams.Popular ?? ""}_{mDbParams.PageNumber ?? 1}";
+        var cacheKey = $"genres_{12344354234}_";
         
-        // Provjeri cache
-        var cachedMovies = await _redis.StringGetAsync(cacheKey);
-
-        if(!string.IsNullOrEmpty(cachedMovies)) 
+        if (!_cache.TryGetValue(cacheKey, out IEnumerable<Genre> combinedGenres))
         {
-            // Vrati iz cachea
-            return JsonSerializer.Deserialize<List<Movie>>(cachedMovies);
+            var movieGenreUrl = "genre/movie/list?language=en";
+            var tvGenreUrl = "genre/tv/list?language=en";
+            var movieGenres = await _httpClient.GetGenreAsync(movieGenreUrl);
+            var tvGenres = await _httpClient.GetGenreAsync(tvGenreUrl);
+            combinedGenres = movieGenres.Union(tvGenres,new GenreEqualityComparer());
+            _cache.Set(cacheKey, combinedGenres, TimeSpan.FromDays(30)); // Cache for 30 days
         }
+        
+        var combinedGenresList = combinedGenres.ToList();
         if (mDbParams.Trending != null && mDbParams.Popular != null)
         {
             mDbParams.Popular = null;
@@ -51,6 +55,8 @@ public class MovieService
 
             try
             {
+                var genreIds = movie.GenreIds.ToList();
+                movie.Genres = combinedGenresList.Where(g => genreIds.Contains(g.Id)).ToList();
                 var creditUrl = $"movie/{movie.Id}/credits?language=en-us";
                 var production = await _httpClient.GetMoviesCreditsAsync(creditUrl);
                 if (production != null)
@@ -104,8 +110,6 @@ public class MovieService
        
         // Mapiraj listu API filmova izravno u listu vaših Movie objekata
         var movies = _mapper.Map<List<Movie>>(apiMovies);
-        
-        _redis.StringSet(cacheKey, JsonSerializer.Serialize(movies), TimeSpan.FromHours(1));
         return movies;
     }
     
