@@ -16,7 +16,7 @@ public class PagedListApi<T> : List<T>
     public int PageSize { get; set; }
     public int TotalCount { get; set; }
 
-    public static PagedListApi<T> CreateAsync(IEnumerable<T> source, int pageNumber, int pageSize)
+    public async static Task<PagedListApi<T>> CreateAsync(IEnumerable<T> source, int pageNumber, int pageSize)
     {
         var listSource = source.ToList(); // Pretvaranje u listu
 

@@ -1,4 +1,5 @@
 using Application.Activity;
+using Application.Core;
 using Application.Movies;
 using Application.Order.Queries;
 using Domain;
@@ -22,7 +23,10 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> List([FromQuery] MDbParams mDbparams)
         {
-            return HandleResult(await _mediator.Send(new GetMoviesQuery{ MDbparams = mDbparams}));
+            return HandlePagedResultApi<Movie>(await _mediator.Send(new GetMoviesQuery
+            {
+                MDbparams = mDbparams
+            }));
         }
 
          [HttpGet("{id}")]

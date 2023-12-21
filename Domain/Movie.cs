@@ -9,7 +9,7 @@ public class Movie
     public string Director { get; set; }
     public double Rating { get; set; }
     public List<Actor> Cast { get; set; }
-    public List<int> GenreIds { get; set; }
+    public List<string> Genres { get; set; }
 
     public string MediaType { get; set; }
     public string CoverPhoto { get; set; }
