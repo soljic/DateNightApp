@@ -14,6 +14,8 @@ public class ApiMovie
     public string Title { get; set; }
     public string OriginalLanguage { get; set; }
     public string OriginalTitle { get; set; }
+    
+    public List<Genre> Genres { get; set; }
     public string Overview { get; set; }
     [JsonProperty("poster_path")]
     public string PosterPath { get; set; }

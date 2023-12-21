@@ -8,6 +8,7 @@
 		<PackageReference Include="CloudinaryDotNet" Version="1.24.0" />
 		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
 		<PackageReference Include="MediatR" Version="12.0.1" />
+		<PackageReference Include="Microsoft.VisualStudio.Utilities" Version="17.8.37221" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="StackExchange.Redis" Version="2.6.104" />
 		<PackageReference Include="StackExchange.Redis.Extensions.Core" Version="9.1.0" />

@@ -106,6 +106,48 @@ public class MovieHttpClient
             return null;
         }
     }
+    
+    public async Task<List<Genre>> GetGenreAsync(string url)
+    {
+        string apiKey = _configuration.GetSection("MovieService:ApiKey").Value;
+
+        try
+        {
+            var response = await _httpClient.GetAsync($"{url}&api_key={apiKey}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var settings = new JsonSerializerSettings
+                {
+                    ContractResolver = new DefaultContractResolver
+                    {
+                        NamingStrategy = new CamelCaseNamingStrategy()
+                    },
+                    Formatting = Formatting.Indented
+                };
+
+                var production = JsonConvert.DeserializeObject<GenresResponse>(jsonString, settings);
+
+                return production.Genres;
+            }
+            else
+            {
+                // Ako zahtjev nije uspješan, obradi grešku (npr. bacanjem iznimke)
+                return null;
+
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+            }
+            return null;
+        }
+    }
 
 
 }

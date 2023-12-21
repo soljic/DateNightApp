@@ -11,6 +11,8 @@ using Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Application.Behaviors;
+using Application.Infrastructure.CachingService;
 using Application.Infrastructure.Photos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -68,11 +70,15 @@ namespace API
                     policy.AllowAnyHeader().AllowCredentials().WithExposedHeaders("www-authenticate", "Pagination").AllowAnyMethod().WithOrigins("http://localhost:3000","http://localhost:5000");
                 });
             });
+
+            services.AddMemoryCache();
+            services.AddSingleton<ICachedService, CacheService>();
             
             services.AddMediatR(cfg => 
             {
                 cfg.RegisterServicesFromAssemblyContaining<Program>();
                 cfg.RegisterServicesFromAssembly(typeof(Create).Assembly);
+                cfg.AddOpenBehavior(typeof(Application.Behaviors.QueryCachingPipelineBehavior<,>));
 
             });
               //services.AddAutoMapper(typeof(Application.Core.MappingProfiles).Assembly);
