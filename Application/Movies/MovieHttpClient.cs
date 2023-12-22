@@ -15,13 +15,16 @@ public class MovieHttpClient
 {
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _configuration;
+    public readonly string _baseUrl;
+    public readonly string _apiKey;
 
     public MovieHttpClient(IConfiguration configuration)
     {
         _configuration = configuration;
-        string baseUrl = _configuration.GetSection("MovieService:BaseUrl").Value;
+        string _baseUrl = _configuration.GetSection("MovieService:BaseUrl").Value;
+        string _apiKey = _configuration.GetSection("MovieService:ApiKey").Value;
 
-        Uri baseUri = new Uri(baseUrl);
+        Uri baseUri = new Uri(_baseUrl);
         _httpClient = new HttpClient
         {
             BaseAddress = baseUri
@@ -34,120 +37,113 @@ public class MovieHttpClient
 
     public async Task<List<ApiMovie>> GetMoviesAsync(string url)
     {
-        string apiKey = _configuration.GetSection("MovieService:ApiKey").Value;
+        try
+        {
+            var movies = await GetApiResponseAsync<ApiResponse>(url, new ApiMovieConverter() );
+            ArgumentNullException.ThrowIfNull(movies);
+            return movies.Results;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+            }
 
-        var response = await _httpClient.GetAsync($"{url}&api_key={apiKey}");
+            return null;
+        }
+    }
+
+    public async Task<ApiCredits> GetMoviesCreditsAsync(string url)
+    {
+        try
+        {
+            var credits = await GetApiResponseAsync<ApiCredits>(url, new ApiCreditsConverter() );
+            ArgumentNullException.ThrowIfNull(credits);
+            return credits;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+            }
+
+            return null;
+        }
+    }
+
+    public async Task<List<Genre>> GetGenreAsync(string url)
+    {
+        try
+        {
+            var genre = await GetApiResponseAsync<GenresResponse>(url);
+            ArgumentNullException.ThrowIfNull(genre);
+            return genre.Genres;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+            }
+
+            return null;
+        }
+    }
+
+    public async Task<List<Image>> GetImageAsync(string url)
+    {
+        try
+        {
+            var images = await GetApiResponseAsync<ImageResponse>(url);
+            ArgumentNullException.ThrowIfNull(images);
+            return images.Images;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+            }
+
+            return null;
+        }
+    }
+
+    private async Task<T> GetApiResponseAsync<T>(string url, JsonConverter customConverter = null )
+    {
+        string apiKey = _configuration.GetSection("MovieService:ApiKey").Value;
+        var response = await _httpClient.GetAsync($"{url}api_key={apiKey}");
 
         if (response.IsSuccessStatusCode)
         {
             var jsonString = await response.Content.ReadAsStringAsync();
             var settings = new JsonSerializerSettings
             {
-                Converters = { new ApiMovieConverter() },
-                ContractResolver = new DefaultContractResolver
+                ContractResolver =  new DefaultContractResolver
                 {
                     NamingStrategy = new CamelCaseNamingStrategy()
                 },
                 Formatting = Formatting.Indented
             };
+            
+            if (customConverter != null)
+            {
+                settings.Converters.Add(customConverter);
+            }
 
-            var movies = JsonConvert.DeserializeObject<ApiResponse>(jsonString, settings)?.Results;
-            return movies;
-
+            var production = JsonConvert.DeserializeObject<T>(jsonString, settings);
+            return production;
         }
         else
         {
-            // Ako zahtjev nije uspješan, obradi grešku (npr. bacanjem iznimke)
-            response.Content.ReadAsStringAsync();
-            response.EnsureSuccessStatusCode();
-            return null; // Ovo se nikada neće izvršiti, ali je potrebno zbog povratnog tipa
+            throw new HttpRequestException($"Request to {url} failed with status code {response.StatusCode}"); // Handle unsuccessful HTTP response
         }
     }
-
-    public async Task<ApiCredits> GetMoviesCreditsAsync(string url)
-    {
-        string apiKey = _configuration.GetSection("MovieService:ApiKey").Value;
-
-        try
-        {
-            var response = await _httpClient.GetAsync($"{url}&api_key={apiKey}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonString = await response.Content.ReadAsStringAsync();
-                var settings = new JsonSerializerSettings
-                {
-                    Converters = { new ApiCreditsConverter() },
-                    ContractResolver = new DefaultContractResolver
-                    {
-                        NamingStrategy = new CamelCaseNamingStrategy()
-                    },
-                    Formatting = Formatting.Indented
-                };
-
-                var production = JsonConvert.DeserializeObject<ApiCredits>(jsonString, settings);
-
-                return production;
-            }
-            else
-            {
-                // Ako zahtjev nije uspješan, obradi grešku (npr. bacanjem iznimke)
-                return null;
-
-            }
-        }
-        catch (HttpRequestException ex)
-        {
-            Console.WriteLine($"An error occurred: {ex.Message}");
-            if (ex.InnerException != null)
-            {
-                Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
-            }
-            return null;
-        }
-    }
-    
-    public async Task<List<Genre>> GetGenreAsync(string url)
-    {
-        string apiKey = _configuration.GetSection("MovieService:ApiKey").Value;
-
-        try
-        {
-            var response = await _httpClient.GetAsync($"{url}&api_key={apiKey}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonString = await response.Content.ReadAsStringAsync();
-                var settings = new JsonSerializerSettings
-                {
-                    ContractResolver = new DefaultContractResolver
-                    {
-                        NamingStrategy = new CamelCaseNamingStrategy()
-                    },
-                    Formatting = Formatting.Indented
-                };
-
-                var production = JsonConvert.DeserializeObject<GenresResponse>(jsonString, settings);
-
-                return production.Genres;
-            }
-            else
-            {
-                // Ako zahtjev nije uspješan, obradi grešku (npr. bacanjem iznimke)
-                return null;
-
-            }
-        }
-        catch (HttpRequestException ex)
-        {
-            Console.WriteLine($"An error occurred: {ex.Message}");
-            if (ex.InnerException != null)
-            {
-                Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
-            }
-            return null;
-        }
-    }
-
-
 }
+

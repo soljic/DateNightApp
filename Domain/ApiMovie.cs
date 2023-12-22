@@ -7,6 +7,7 @@ namespace Domain;
 public class ApiMovie
 {
     public bool Adult { get; set; }
+    [JsonProperty("backdrop_path")]
     public string BackdropPath { get; set; }
     public string Type { get; set; }
     public int Id { get; set; }
