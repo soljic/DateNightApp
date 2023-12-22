@@ -3,6 +3,7 @@ using Application.Core;
 using AutoMapper;
 using Domain;
 using Domain.Helpers;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Application.Movies;
@@ -18,6 +19,7 @@ public class MovieService
         _httpClient = httpClient;
         _mapper = mapper;
         _cache = cache;
+
     }
     public async Task<List<Movie>> GetMovies(MDbParams mDbParams)
     {
@@ -25,8 +27,8 @@ public class MovieService
         
         if (!_cache.TryGetValue(cacheKey, out IEnumerable<Genre> combinedGenres))
         {
-            var movieGenreUrl = "genre/movie/list?language=en";
-            var tvGenreUrl = "genre/tv/list?language=en";
+            var movieGenreUrl = "genre/movie/list?language=en&";
+            var tvGenreUrl = "genre/tv/list?language=en&";
             var movieGenres = await _httpClient.GetGenreAsync(movieGenreUrl);
             var tvGenres = await _httpClient.GetGenreAsync(tvGenreUrl);
             combinedGenres = movieGenres.Union(tvGenres,new GenreEqualityComparer());
@@ -40,9 +42,9 @@ public class MovieService
         }
         var mDbUrl = mDbParams switch
         {
-            { Search: not null } => $"search/movie?language=en-US&page={mDbParams.PageNumber}&include_adult=false&query={mDbParams.Search}",
-            { Popular: not null } => $"movie/popular?language=en-US&page={mDbParams.PageNumber}",
-            _ => $"trending/all/week?page={mDbParams.PageNumber}"
+            { Search: not null } => $"search/movie?language=en-US&page={mDbParams.PageNumber}&include_adult=false&query={mDbParams.Search}&",
+            { Popular: not null } => $"movie/popular?language=en-US&page={mDbParams.PageNumber}&",
+            _ => $"trending/all/week?page={mDbParams.PageNumber}&"
         };
         
         // Dohvati listu filmova s API-ja
@@ -55,9 +57,13 @@ public class MovieService
 
             try
             {
+               
+                RefactorImageUrl(movie);
                 var genreIds = movie.GenreIds.ToList();
                 movie.Genres = combinedGenresList.Where(g => genreIds.Contains(g.Id)).ToList();
-                var creditUrl = $"movie/{movie.Id}/credits?language=en-us";
+                
+                var creditUrl = $"movie/{movie.Id}/credits?language=en-us&";
+                
                 var production = await _httpClient.GetMoviesCreditsAsync(creditUrl);
                 if (production != null)
                 {
@@ -111,6 +117,15 @@ public class MovieService
         // Mapiraj listu API filmova izravno u listu vaših Movie objekata
         var movies = _mapper.Map<List<Movie>>(apiMovies);
         return movies;
+    }
+
+    private void RefactorImageUrl(ApiMovie movie)
+    {
+        string baseImageUrl = "https://image.tmdb.org/t/p/original";
+        if (movie.BackdropPath != null)
+        { 
+            movie.PosterPath = $"{baseImageUrl}{movie.BackdropPath}";
+        }
     }
     
 }
